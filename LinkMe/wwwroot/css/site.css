@@ -1,0 +1,142 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #7B7A7A;
+    background-color: #02D3C7;
+    border: 0px;
+    border-radius: 0.5rem;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+    margin: 0;
+}
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active {
+        background-color: #7B7A7A;
+        color: #02D3C7;
+        box-shadow: none;
+        outline: none;
+    }
+
+        .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+        .show > .btn-primary.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem #02D3C7;
+        }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 7px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    font-family: "Alata", sans-serif;
+    color: #7B7A7A;
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+h1, .h1 {
+    font-size: 4.3rem;
+    letter-spacing: 0.019rem;
+    margin-top: 5.75rem;
+    margin-bottom: 2.375rem;
+}
+
+h2, .h2 {
+    font-size: 3.125rem;
+    letter-spacing: 0.125rem;
+}
+
+h3, .h3 {
+    font-size: 2.1875rem;
+    letter-spacing: 0.125rem;
+}
+
+h4, .h4 {
+    font-size: 1.25rem;
+    letter-spacing: 0.019rem;
+}
+
+.logo {
+    font-family: "Fredoka One", cursive;
+    font-size: 3.125rem;
+    letter-spacing: 0.009375rem;
+    color: #02D3C7;
+}
+
+.form-control {
+    color: #7B7A7A;
+    border-radius: 0.5rem;
+    border: 2px solid #7B7A7A;
+}
+
+    .form-control:focus, .form-control:active {
+        border-color: #7B7A7A;
+        box-shadow: 0 0 0 0.2rem rgba(123, 122, 122, 0.25);
+        outline: none
+    }
+
+.rigth_margin {
+    margin-right: 1.25rem;
+}
+
+.input-group > .form-control:not(:last-child) {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
