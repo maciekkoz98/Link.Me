@@ -1,6 +1,6 @@
 ﻿namespace LinkMe.Core
 {
-    class LinkClick
+    public class LinkClick
     {
         public int ID { get; set; }
         public int LinkID { get; set; }

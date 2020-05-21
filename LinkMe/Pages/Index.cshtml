@@ -4,15 +4,20 @@
     ViewData["Title"] = "Home page";
 }
 
-
 <p class="text-center h1">Wklej swój dłuuugi link!</p>
-<form method="post">
+<form name="linkForm" method="post">
     <div class="form-group">
         <div class="input-group">
-            <input type="text" class="form-control h3 rigth_margin" />
-            <button class="btn btn-primary h3">
+            <input class="form-control h3 rigth_margin" asp-for="Link.OriginalLink" />
+            <button name="btnsubmit" type="submit" class="btn btn-primary h3">
                 Skróć!
             </button>
         </div>
+        <span class="text-danger h4" asp-validation-for="Link.OriginalLink"></span>
     </div>
+
 </form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

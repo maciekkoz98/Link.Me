@@ -8,6 +8,17 @@
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\LinkStats\" />
+    <Folder Include="Pages\User\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LinkMe.Core\LinkMe.Core.csproj" />
+    <ProjectReference Include="..\LinkMe.Data\LinkMe.Data.csproj" />
   </ItemGroup>
 
 </Project>
