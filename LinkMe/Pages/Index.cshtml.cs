@@ -39,6 +39,7 @@ namespace LinkMe.Pages
             }
             else
             {
+                Link.GenerateShortLink();
                 linkData.Add(Link);
                 linkData.Commit();
                 return RedirectToPage("./LinkGenerated", new { id = Link.ID });

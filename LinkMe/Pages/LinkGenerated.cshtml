@@ -4,5 +4,33 @@
     ViewData["Title"] = "LinkGenerated";
 }
 
-<h1>LinkGenerated</h1>
-@Model.Link.OriginalLink
+<h1 class="text-center">Twój link:</h1>
+<div class="form-group">
+    <div class="input-group">
+        <input class="form-control text-center h3 rigth_margin" asp-for="Link.ShortLink" disabled />
+        <button class="btn btn-primary h3">
+            <svg class="clone-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path class="clone-path" fill-rule="evenodd" clip-rule="evenodd" d="M16.5 1H4.5C3.4 1 2.5 1.9 2.5 3V17H4.5V3H16.5V1ZM19.5 5H8.5C7.4 5 6.5 5.9 6.5 7V21C6.5 22.1 7.4 23 8.5 23H19.5C20.6 23 21.5 22.1 21.5 21V7C21.5 5.9 20.6 5 19.5 5ZM8.5 21H19.5V7H8.5V21Z" />
+            </svg>
+            Skopiuj
+        </button>
+    </div>
+</div>
+
+<p class="h3">Skracany link:</p>
+<p class="h3 text-center">@Model.Link.OriginalLink</p>
+
+<div class="flex-parent">
+    <div class="flex-parent">
+        <svg class="summary-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM11 7H12.5V12.25L17 14.92L16.25 16.15L11 13V7Z" />
+        </svg>
+        <p class="h3">Twój link wygasa za 3 dni.</p>
+    </div>
+    <div class="flex-parent">
+        <svg class="summary-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L19.71 9.71L22 12V6H16Z" />
+        </svg>
+        <p class="h3">Aby otrzymać dostęp do statystyk <a href="#">zarejestruj się</a>.</p>
+    </div>
+</div>

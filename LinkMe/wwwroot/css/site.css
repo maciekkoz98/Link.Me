@@ -12,8 +12,13 @@ a {
     color: #0366d6;
 }
 
+.btn {
+    display: flex;
+}
+
 .btn-primary {
     color: #7B7A7A;
+    fill: #7B7A7A;
     background-color: #02D3C7;
     border: 0px;
     border-radius: 0.5rem;
@@ -22,9 +27,10 @@ a {
     margin: 0;
 }
 
-    .btn-primary:hover, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active {
+    .btn-primary:hover .clone-svg .clone-path, .btn-primary:hover, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active {
         background-color: #7B7A7A;
         color: #02D3C7;
+        fill: #02D3C7;
         box-shadow: none;
         outline: none;
     }
@@ -94,7 +100,7 @@ body {
 h1, .h1 {
     font-size: 4.3rem;
     letter-spacing: 0.019rem;
-    margin-top: 5.75rem;
+    margin-top: 5rem;
     margin-bottom: 2.375rem;
 }
 
@@ -143,4 +149,23 @@ h4, .h4 {
 
 .input-group {
     margin-bottom: 0.25rem;
+}
+
+.clone-svg {
+    align-self: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.625rem;
+}
+
+.summary-svg {
+    fill: #7B7A7A;
+    width: 6.25rem;
+    height: 6.25rem;
+}
+
+.flex-parent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
