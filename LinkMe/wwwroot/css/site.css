@@ -7,6 +7,21 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.navbar {
+    padding: 0rem 1.625rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar-collapse {
+    flex-grow: inherit;
+}
+
+.bg-primary {
+    background-color: #7B7A7A !important;
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
@@ -39,6 +54,33 @@ a {
         .show > .btn-primary.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.2rem #02D3C7;
         }
+
+.btn-register {
+    border-radius: 25px;
+    padding: 0.5rem 2.25rem;
+    border: none;
+    margin-right: 0.8125rem;
+}
+
+    .btn-register:hover, .btn-register:focus, .btn-register:active {
+        padding: 0.3125rem 2.0625rem;
+    }
+
+.btn-register, .btn-login:hover, .btn-login:focus, .btn-login:active {
+    background-color: #02D3C7;
+    color: #7B7A7A !important;
+}
+
+.btn-login {
+    padding: 0.3125rem 3.1875rem;
+    border-radius: 25px;
+}
+
+.btn-login, .btn-register:hover, .btn-register:focus, .btn-register:active {
+    background-color: #7B7A7A;
+    color: #02D3C7 !important;
+    border: 0.1875rem #02D3C7 solid;
+}
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
@@ -117,13 +159,16 @@ h3, .h3 {
 h4, .h4 {
     font-size: 1.25rem;
     letter-spacing: 0.019rem;
+    margin-bottom: 0rem;
 }
 
-.logo {
+.navbar-brand {
     font-family: "Fredoka One", cursive;
     font-size: 3.125rem;
     letter-spacing: 0.009375rem;
-    color: #02D3C7;
+    color: #02D3C7 !important;
+    padding: 0rem !important;
+    line-height: 3.75rem !important;
 }
 
 .form-control {
@@ -164,7 +209,7 @@ h4, .h4 {
     height: 6.25rem;
 }
 
-.flex-parent{
+.flex-parent {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
