@@ -15,5 +15,16 @@
       "renameLocals": true
     },
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/LinkGenerated/copyToClipboard.min.js",
+    "inputFiles": [
+      "wwwroot/js/LinkGenerated/copyToClipboard.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
   }
 ]
