@@ -7,5 +7,10 @@
 
 function copyToClipboard() {
     console.log("klik");
-    navigator.clipboard.writeText(shortLinkInput.value).then(() => { console.log("udane"); }, (err) => { console.log(err); });
+    navigator.clipboard.writeText(shortLinkInput.value)
+        .then(
+            () => { console.log("udane"); },
+            (err) => { console.log(err); }
+        );
+    copyButton.blur();
 }
