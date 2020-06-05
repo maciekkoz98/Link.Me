@@ -26,7 +26,20 @@ namespace LinkMe.Pages
             {
                 return RedirectToPage("./Index");
             }
-            return Page();
+
+            if (Link == null)
+            {
+                return NotFound();
+            }
+            else if (!Link.ShownSummary)
+            {
+                Link.ShownSummary = true;
+                return Page();
+            }
+            else
+            {
+                return StatusCode(403);
+            }
         }
 
 

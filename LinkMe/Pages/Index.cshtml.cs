@@ -40,6 +40,7 @@ namespace LinkMe.Pages
             else
             {
                 Link.GenerateShortLink(UserType.Unregistered);
+                Link.ShownSummary = false;
                 linkData.Add(Link);
                 linkData.Commit();
                 return RedirectToPage("./LinkGenerated", new { id = Link.ID });

@@ -43,6 +43,7 @@ namespace LinkMe
             }
 
             app.UseHttpsRedirection();
+            app.UseStatusCodePagesWithReExecute("/Error", "?code={0}");
             app.UseStaticFiles();
 
             app.UseRouting();
