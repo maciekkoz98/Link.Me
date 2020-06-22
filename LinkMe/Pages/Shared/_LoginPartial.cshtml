@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using LinkMe.Core
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <li class="nav-item">
+                    <a id="manage" class="nav-link h5" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                </li>
+                <li class="nav-item">
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                        <button id="logout" type="submit" class="btn btn-login h5">Wyloguj się</button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="btn btn-register h5" id="register" asp-area="Identity" asp-page="/Account/Register">Zarejestruj się</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-login h5" id="login" asp-area="Identity" asp-page="/Account/Login">Zaloguj się</a>
+                </li>
+            }
+        </ul>
+    </div>

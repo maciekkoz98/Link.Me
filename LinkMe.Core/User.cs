@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 
-namespace LinkMe.Core
+namespace LinkMe.Core   
 {
-    public class User
+    public class User : IdentityUser
     {
-        public int ID { get; set; }
-        public string Login { get; set; }
-        public string HashedPassword { get; set; }
+        [PersonalData]
         public UserType UserType { get; set; }
     }
 }
