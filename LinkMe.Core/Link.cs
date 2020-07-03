@@ -15,7 +15,7 @@ namespace LinkMe.Core
         public string OriginalLink { get; set; }
 
         public string ShortLink { get; set; }
-        public int OwnerID { get; set; }
+        public string OwnerID { get; set; }
         public string ValidTo { get; set; } //lub DateTime
         public bool ShownSummary { get; set; }
 

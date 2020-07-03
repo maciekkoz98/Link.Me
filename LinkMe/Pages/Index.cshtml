@@ -1,8 +1,13 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using LinkMe.Core
+
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+
+@inject SignInManager<User> SignInManager
 
 <p class="text-center h1">Wklej swój dłuuugi link!</p>
 <form name="linkForm" method="post">
@@ -15,8 +20,53 @@
         </div>
         <span class="text-danger h4" asp-validation-for="Link.OriginalLink"></span>
     </div>
-
 </form>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <p class="h2 table-caption">Twoje linki:</p>
+    <table class="table table-hover h5">
+        <thead>
+            <tr>
+                <th scope="col">Adres</th>
+                <th scope="col">Link</th>
+                <th scope="col">Wygasa</th>
+                <th scope="col">Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var link in Model.Links)
+            {
+                <tr>
+                    @if (link.OriginalLink.Length > 30)
+                    {
+                        <td class="align-middle">@link.OriginalLink.Substring(0, 30)...</td>
+                    }
+                    else
+                    {
+                        <td class="align-middle">@link.OriginalLink</td>
+                    }
+                    <td class="align-middle">@link.ShortLink</td>
+                    <td class="align-middle">@link.ValidTo</td>
+                    <td class="align-middle">
+                        <!--Stats icon-->
+                        <svg class="table-icon stats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" />
+                        </svg>
+                        <!--Delete icon-->
+                        <svg class="table-icon delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.12 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z" />
+                        </svg>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="h3">Karty produktów</p>
+}
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />

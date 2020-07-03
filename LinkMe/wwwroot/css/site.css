@@ -16,6 +16,11 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-nav {
+    align-items: center;
 }
 
 .navbar-collapse {
@@ -227,6 +232,33 @@ h5, .h5 {
     align-items: center;
     justify-content: space-evenly;
     margin-top: 1.25rem;
+}
+
+.table-caption {
+    margin-top: 3.5rem;
+    margin-bottom: 0.75rem;
+}
+
+th {
+    color: #02D3C7;
+    background: #7B7A7A;
+}
+
+td {
+    color: #7B7A7A;
+}
+
+.table-icon {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.stats-icon {
+    fill: #7B7A7A;
+}
+
+.delete-icon {
+    fill: #EC5635;
 }
 
 @media(min-width: 768px) {

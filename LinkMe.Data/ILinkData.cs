@@ -9,7 +9,7 @@ namespace LinkMe.Data
         Link Update(Link updatedLink);
         Link Add(Link newLink);
         Link Delete(int id);
-        IEnumerable<Link> GetLinksByOwnerID(int ownerID);
+        IEnumerable<Link> GetLinksByOwnerID(string ownerID);
         int GetCountLinks();
         int Commit();
     }

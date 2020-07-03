@@ -12,9 +12,9 @@ namespace LinkMe.Data
         {
             links = new List<Link>()
             {
-                new Link {ID=1, OriginalLink="https://facebook.com", ShortLink="https://Link.Me/asd4q21", OwnerID=-1, ValidTo="data", ShownSummary=false},
-                new Link {ID=2, OriginalLink="https://google.com", ShortLink="https://Link.Me/jhf435a", OwnerID=0, ValidTo="data", ShownSummary=true},
-                new Link {ID=3, OriginalLink="https://wp.pl", ShortLink="https://Link.Me/kjsd9or3", OwnerID=1, ValidTo="data", ShownSummary=true}
+                new Link {ID=1, OriginalLink="https://facebook.com", ShortLink="https://Link.Me/asd4q21", OwnerID="-1", ValidTo="data", ShownSummary=false},
+                new Link {ID=2, OriginalLink="https://google.com", ShortLink="https://Link.Me/jhf435a", OwnerID="0", ValidTo="data", ShownSummary=true},
+                new Link {ID=3, OriginalLink="https://wp.pl", ShortLink="https://Link.Me/kjsd9or3", OwnerID="1", ValidTo="data", ShownSummary=true}
             };
         }
 
@@ -50,7 +50,7 @@ namespace LinkMe.Data
             return links.SingleOrDefault(l => l.ID == id);
         }
 
-        public IEnumerable<Link> GetLinksByOwnerID(int ownerID)
+        public IEnumerable<Link> GetLinksByOwnerID(string ownerID)
         {
             return from l in links
                    where l.OwnerID == ownerID
