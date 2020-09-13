@@ -4,6 +4,6 @@
     {
         Unregistered,
         Registered,
-        Premium
+        Premium,
     }
 }

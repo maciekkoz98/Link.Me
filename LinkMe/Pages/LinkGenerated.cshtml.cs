@@ -9,39 +9,37 @@ namespace LinkMe.Pages
     {
         private readonly ILinkData linkData;
 
-        public Link Link { get; set; }
-
         public LinkGeneratedModel(ILinkData linkData)
         {
             this.linkData = linkData;
         }
 
+        public Link Link { get; set; }
+
         public IActionResult OnGet([FromQuery] int id = -1)
         {
             if (id != -1)
             {
-                Link = linkData.GetLinkByID(id);
+                this.Link = this.linkData.GetLinkByID(id);
             }
             else
             {
-                return RedirectToPage("./Index");
+                return this.RedirectToPage("./Index");
             }
 
-            if (Link == null)
+            if (this.Link == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
-            else if (!Link.ShownSummary)
+            else if (!this.Link.ShownSummary)
             {
-                Link.ShownSummary = true;
-                return Page();
+                this.Link.ShownSummary = true;
+                return this.Page();
             }
             else
             {
-                return StatusCode(403);
+                return this.StatusCode(403);
             }
         }
-
-
     }
 }

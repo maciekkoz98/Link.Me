@@ -98,7 +98,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PasswordTooShort" xml:space="preserve">
-    <value>The password must be at least '{0}' character long.</value>
+    <value>The password must be at least '{0}' character long
+</value>
   </data>
   <data name="PasswordRequiresNonAphabetic" xml:space="preserve">
     <value>The password must contain non-alphabetic character</value>
@@ -113,6 +114,6 @@
     <value>The password must contain upper case letter (A - Z)</value>
   </data>
   <data name="DuplicateUserName" xml:space="preserve">
-    <value>User name '{0}' is already taken</value>
+    <value>This email address is already taken</value>
   </data>
 </root>

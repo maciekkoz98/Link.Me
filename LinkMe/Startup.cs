@@ -1,10 +1,9 @@
-using LinkMe.Areas.Identity;
+﻿using LinkMe.Areas.Identity;
 using LinkMe.Core;
 using LinkMe.Data;
 using LinkMe.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +15,7 @@ namespace LinkMe
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -28,7 +27,7 @@ namespace LinkMe
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddIdentityCore<User>()
                 .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+            services.Configure<AuthMessageSenderOptions>(this.Configuration);
             services.AddRazorPages();
         }
 
@@ -42,6 +41,7 @@ namespace LinkMe
             else
             {
                 app.UseExceptionHandler("/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

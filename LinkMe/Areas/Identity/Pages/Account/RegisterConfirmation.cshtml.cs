@@ -1,25 +1,23 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using System.Text;
 using System.Threading.Tasks;
 using LinkMe.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace LinkMe.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IEmailSender _sender;
+        private readonly UserManager<User> userManager;
+        private readonly IEmailSender sender;
 
         public RegisterConfirmationModel(UserManager<User> userManager, IEmailSender sender)
         {
-            _userManager = userManager;
-            _sender = sender;
+            this.userManager = userManager;
+            this.sender = sender;
         }
 
         public string Email { get; set; }
@@ -32,20 +30,21 @@ namespace LinkMe.Areas.Identity.Pages.Account
         {
             if (email == null)
             {
-                return RedirectToPage("/Index");
+                return this.RedirectToPage("/Index");
             }
 
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await this.userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return NotFound($"Unable to load user with email '{email}'.");
+                return this.NotFound($"Unable to load user with email '{email}'.");
             }
 
-            Email = email;
+            this.Email = email;
+
             // Once you add a real email sender, you should remove this code that lets you confirm the account
-            //DisplayConfirmAccountLink = true;
-            //if (DisplayConfirmAccountLink)
-            //{
+            // DisplayConfirmAccountLink = true;
+            // if (DisplayConfirmAccountLink)
+            // {
             //    var userId = await _userManager.GetUserIdAsync(user);
             //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             //    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -54,9 +53,8 @@ namespace LinkMe.Areas.Identity.Pages.Account
             //        pageHandler: null,
             //        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
             //        protocol: Request.Scheme);
-            //}
-
-            return Page();
+            // }
+            return this.Page();
         }
     }
 }

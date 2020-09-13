@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkMe", "LinkMe\LinkMe.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkMe.Core", "LinkMe.Core\LinkMe.Core.csproj", "{DFD89CF4-C71B-4E47-B825-E81D2D902BF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkMe.Data", "LinkMe.Data\LinkMe.Data.csproj", "{576FB4E4-BC85-432E-A661-A8AC611CBD03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkMe.Data", "LinkMe.Data\LinkMe.Data.csproj", "{576FB4E4-BC85-432E-A661-A8AC611CBD03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{868FD0A8-9D5C-4639-902F-47EF521F2E09}"
+	ProjectSection(SolutionItems) = preProject
+		LinkMe.ruleset = LinkMe.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

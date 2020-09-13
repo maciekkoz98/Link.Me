@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using LinkMe.Core;
 using LinkMe.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -18,51 +14,53 @@ namespace LinkMe.Pages
     [AllowAnonymous]
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<IndexModel> logger;
         private readonly ILinkData linkData;
 
         public IndexModel(ILogger<IndexModel> logger, ILinkData linkData)
         {
-            _logger = logger;
+            this.logger = logger;
             this.linkData = linkData;
         }
 
         [BindProperty]
         public Link Link { get; set; }
+
         public IEnumerable<Link> Links { get; set; }
 
         public void OnGet()
         {
-            var userIDClaim = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            var userIDClaim = this.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
             if (userIDClaim != null)
             {
-                Links = linkData.GetLinksByOwnerID(userIDClaim.Value);
+                this.Links = this.linkData.GetLinksByOwnerID(userIDClaim.Value);
             }
         }
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return Page();
+                return this.Page();
             }
             else
             {
-                var userIDClaim = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                var userIDClaim = this.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
                 if (userIDClaim == null)
                 {
-                    Link.GenerateShortLink(UserType.Unregistered);
+                    this.Link.GenerateShortLink(UserType.Unregistered);
                 }
                 else
                 {
-                    var userTypeClaim = User.Claims.FirstOrDefault(x => x.Type == "UserType");
-                    Link.GenerateShortLink(Enum.Parse<UserType>(userTypeClaim.Value));
-                    Link.OwnerID = userIDClaim.Value;
+                    var userTypeClaim = this.User.Claims.FirstOrDefault(x => x.Type == "UserType");
+                    this.Link.GenerateShortLink(Enum.Parse<UserType>(userTypeClaim.Value));
+                    this.Link.OwnerID = userIDClaim.Value;
                 }
-                Link.ShownSummary = false;
-                linkData.Add(Link);
-                linkData.Commit();
-                return RedirectToPage("./LinkGenerated", new { id = Link.ID });
+
+                this.Link.ShownSummary = false;
+                this.linkData.Add(this.Link);
+                this.linkData.Commit();
+                return this.RedirectToPage("./LinkGenerated", new { id = this.Link.ID });
             }
         }
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using LinkMe.Core;
@@ -15,11 +12,11 @@ namespace LinkMe.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<User> userManager;
 
         public ConfirmEmailModel(UserManager<User> userManager)
         {
-            _userManager = userManager;
+            this.userManager = userManager;
         }
 
         [TempData]
@@ -29,19 +26,19 @@ namespace LinkMe.Areas.Identity.Pages.Account
         {
             if (userId == null || code == null)
             {
-                return RedirectToPage("/Index");
+                return this.RedirectToPage("/Index");
             }
 
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await this.userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userId}'.");
+                return this.NotFound($"Unable to load user with ID '{userId}'.");
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
-            return Page();
+            var result = await this.userManager.ConfirmEmailAsync(user, code);
+            this.StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            return this.Page();
         }
     }
 }

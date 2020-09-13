@@ -6,11 +6,17 @@ namespace LinkMe.Data
     public interface ILinkData
     {
         Link GetLinkByID(int id);
+
         Link Update(Link updatedLink);
+
         Link Add(Link newLink);
+
         Link Delete(int id);
+
         IEnumerable<Link> GetLinksByOwnerID(string ownerID);
+
         int GetCountLinks();
+
         int Commit();
     }
 }

@@ -8,8 +8,8 @@ namespace LinkMe.Areas.Identity
         {
             return new IdentityError
             {
-                Code = nameof(PasswordRequiresLower),
-                Description = LocalizedIdentityErrorMessages.PasswordRequiresLower
+                Code = nameof(this.PasswordRequiresLower),
+                Description = LocalizedIdentityErrorMessages.PasswordRequiresLower,
             };
         }
 
@@ -17,8 +17,8 @@ namespace LinkMe.Areas.Identity
         {
             return new IdentityError
             {
-                Code = nameof(PasswordRequiresUpper),
-                Description = LocalizedIdentityErrorMessages.PasswordRequiresUpper
+                Code = nameof(this.PasswordRequiresUpper),
+                Description = LocalizedIdentityErrorMessages.PasswordRequiresUpper,
             };
         }
 
@@ -26,8 +26,8 @@ namespace LinkMe.Areas.Identity
         {
             return new IdentityError
             {
-                Code = nameof(PasswordRequiresDigit),
-                Description = LocalizedIdentityErrorMessages.PasswordRequiresDigit
+                Code = nameof(this.PasswordRequiresDigit),
+                Description = LocalizedIdentityErrorMessages.PasswordRequiresDigit,
             };
         }
 
@@ -35,8 +35,8 @@ namespace LinkMe.Areas.Identity
         {
             return new IdentityError
             {
-                Code = nameof(PasswordRequiresNonAlphanumeric),
-                Description = LocalizedIdentityErrorMessages.PasswordRequiresNonAphabetic
+                Code = nameof(this.PasswordRequiresNonAlphanumeric),
+                Description = LocalizedIdentityErrorMessages.PasswordRequiresNonAphabetic,
             };
         }
 
@@ -44,8 +44,8 @@ namespace LinkMe.Areas.Identity
         {
             return new IdentityError
             {
-                Code = nameof(DuplicateEmail),
-                Description = string.Format(LocalizedIdentityErrorMessages.DuplicateUserName, email)
+                Code = nameof(this.DuplicateEmail),
+                Description = LocalizedIdentityErrorMessages.DuplicateUserName,
             };
         }
     }

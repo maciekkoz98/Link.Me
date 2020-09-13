@@ -7,22 +7,22 @@ namespace LinkMe.Data
 {
     public class InMemoryLinkData : ILinkData
     {
-        readonly List<Link> links;
+        private readonly List<Link> links;
 
         public InMemoryLinkData()
         {
-            links = new List<Link>()
+            this.links = new List<Link>()
             {
-                new Link {ID=1, OriginalLink="https://facebook.com", ShortLink="https://Link.Me/asd4q21", OwnerID="-1", ValidTo=DateTime.UtcNow.AddDays(4), ShownSummary=false},
-                new Link {ID=2, OriginalLink="https://google.com", ShortLink="https://Link.Me/jhf435a", OwnerID="0", ValidTo=DateTime.UtcNow.AddDays(3), ShownSummary=true},
-                new Link {ID=3, OriginalLink="https://wp.pl", ShortLink="https://Link.Me/kjsd9or3", OwnerID="1", ValidTo=DateTime.UtcNow.AddDays(20), ShownSummary=true}
+                new Link { ID = 1, OriginalLink = "https://facebook.com", ShortLink = "https://Link.Me/asd4q21", OwnerID = "-1", ValidTo = DateTime.UtcNow.AddDays(4), ShownSummary = false },
+                new Link { ID = 2, OriginalLink = "https://google.com", ShortLink = "https://Link.Me/jhf435a", OwnerID = "0", ValidTo = DateTime.UtcNow.AddDays(3), ShownSummary = true },
+                new Link { ID = 3, OriginalLink = "https://wp.pl", ShortLink = "https://Link.Me/kjsd9or3", OwnerID = "1", ValidTo = DateTime.UtcNow.AddDays(20), ShownSummary = true },
             };
         }
 
         public Link Add(Link newLink)
         {
-            links.Add(newLink);
-            newLink.ID = links.Max(l => l.ID) + 1;
+            this.links.Add(newLink);
+            newLink.ID = this.links.Max(l => l.ID) + 1;
             return newLink;
         }
 
@@ -33,34 +33,35 @@ namespace LinkMe.Data
 
         public Link Delete(int id)
         {
-            var link = links.FirstOrDefault(l => l.ID == id);
+            var link = this.links.FirstOrDefault(l => l.ID == id);
             if (link != null)
             {
-                links.Remove(link);
+                this.links.Remove(link);
             }
+
             return link;
         }
 
         public int GetCountLinks()
         {
-            return links.Count();
+            return this.links.Count();
         }
 
         public Link GetLinkByID(int id)
         {
-            return links.SingleOrDefault(l => l.ID == id);
+            return this.links.SingleOrDefault(l => l.ID == id);
         }
 
         public IEnumerable<Link> GetLinksByOwnerID(string ownerID)
         {
-            return from l in links
+            return from l in this.links
                    where l.OwnerID == ownerID
                    select l;
         }
 
         public Link Update(Link updatedLink)
         {
-            Link link = links.SingleOrDefault(l => l.ID == updatedLink.ID);
+            Link link = this.links.SingleOrDefault(l => l.ID == updatedLink.ID);
             if (link != null)
             {
                 link.OriginalLink = updatedLink.OriginalLink;
@@ -68,6 +69,7 @@ namespace LinkMe.Data
                 link.ShortLink = updatedLink.ShortLink;
                 link.ValidTo = updatedLink.ValidTo;
             }
+
             return link;
         }
     }

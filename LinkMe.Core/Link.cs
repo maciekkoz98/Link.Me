@@ -15,44 +15,36 @@ namespace LinkMe.Core
         public string OriginalLink { get; set; }
 
         public string ShortLink { get; set; }
+
         public string OwnerID { get; set; }
-        public DateTime ValidTo { get; set; } 
+
+        public DateTime ValidTo { get; set; }
+
         public bool ShownSummary { get; set; }
 
         public void GenerateShortLink(UserType userType)
         {
-            StringBuilder linkToShort = new StringBuilder(OriginalLink);
+            StringBuilder linkToShort = new StringBuilder(this.OriginalLink);
             while (linkToShort.Length < 512)
             {
                 linkToShort.Append(linkToShort);
             }
+
             var now = DateTime.UtcNow;
             linkToShort.Append(now.ToString());
-            ShortLink = "https://link.me/" + Adler32(linkToShort.ToString()).ToString("X").ToLower();
+            this.ShortLink = "https://link.me/" + this.Adler32(linkToShort.ToString()).ToString("X").ToLower();
             switch (userType)
             {
                 case UserType.Unregistered:
-                    ValidTo = now.AddDays(3);
+                    this.ValidTo = now.AddDays(3);
                     break;
                 case UserType.Registered:
-                    ValidTo = now.AddDays(7);
+                    this.ValidTo = now.AddDays(7);
                     break;
                 case UserType.Premium:
-                    ValidTo = now.AddYears(100);
+                    this.ValidTo = now.AddYears(100);
                     break;
             }
-        }
-
-        private int Adler32(string word)
-        {
-            const int mod = 65521;
-            int a = 1, b = 0;
-            foreach (char c in word)
-            {
-                a = (a + c) % mod;
-                b = (b + a) % mod;
-            }
-            return (b << 16) | a;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -60,7 +52,7 @@ namespace LinkMe.Core
             ValidationResult validationResult;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(OriginalLink);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.OriginalLink);
                 request.Method = "GET";
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode >= HttpStatusCode.OK && response.StatusCode <= HttpStatusCode.PartialContent)
@@ -74,15 +66,28 @@ namespace LinkMe.Core
                 }
                 else
                 {
-                    validationResult = new ValidationResult("Twój link prowadzi donikąd :(", new[] { nameof(OriginalLink) });
+                    validationResult = new ValidationResult("Twój link prowadzi donikąd :(", new[] { nameof(this.OriginalLink) });
                 }
             }
             catch (WebException)
             {
-                validationResult = new ValidationResult("Twój link prowadzi donikąd :(", new[] { nameof(OriginalLink) });
+                validationResult = new ValidationResult("Twój link prowadzi donikąd :(", new[] { nameof(this.OriginalLink) });
             }
 
             yield return validationResult;
+        }
+
+        private int Adler32(string word)
+        {
+            const int mod = 65521;
+            int a = 1, b = 0;
+            foreach (char c in word)
+            {
+                a = (a + c) % mod;
+                b = (b + a) % mod;
+            }
+
+            return (b << 16) | a;
         }
     }
 }

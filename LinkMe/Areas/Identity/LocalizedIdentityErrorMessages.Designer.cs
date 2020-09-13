@@ -61,7 +61,7 @@ namespace LinkMe.Areas.Identity {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User name &apos;{0}&apos; is already taken.
+        ///   Looks up a localized string similar to This email address is already taken.
         /// </summary>
         public static string DuplicateUserName {
             get {
@@ -106,7 +106,8 @@ namespace LinkMe.Areas.Identity {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password must be at least &apos;{0}&apos; character long..
+        ///   Looks up a localized string similar to The password must be at least &apos;{0}&apos; character long
+        ///.
         /// </summary>
         public static string PasswordTooShort {
             get {

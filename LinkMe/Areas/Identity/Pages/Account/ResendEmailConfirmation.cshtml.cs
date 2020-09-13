@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -17,24 +16,17 @@ namespace LinkMe.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public abstract class ResendEmailConfirmationModel : PageModel
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly UserManager<User> userManager;
+        private readonly IEmailSender emailSender;
 
         public ResendEmailConfirmationModel(UserManager<User> userManager, IEmailSender emailSender)
         {
-            _userManager = userManager;
-            _emailSender = emailSender;
+            this.userManager = userManager;
+            this.emailSender = emailSender;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-        }
 
         public void OnGet()
         {
@@ -42,33 +34,40 @@ namespace LinkMe.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return Page();
+                return this.Page();
             }
 
-            var user = await _userManager.FindByEmailAsync(Input.Email);
+            var user = await this.userManager.FindByEmailAsync(this.Input.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
-                return Page();
+                this.ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                return this.Page();
             }
 
-            var userId = await _userManager.GetUserIdAsync(user);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var userId = await this.userManager.GetUserIdAsync(user);
+            var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
+            var callbackUrl = this.Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new { userId = userId, code = code },
-                protocol: Request.Scheme);
-            await _emailSender.SendEmailAsync(
-                Input.Email,
+                values: new { userId, code },
+                protocol: this.Request.Scheme);
+            await this.emailSender.SendEmailAsync(
+                this.Input.Email,
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
-            return Page();
+            this.ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            return this.Page();
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
         }
     }
 }
