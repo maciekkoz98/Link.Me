@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+﻿using LinkMe.Core;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using LinkMe.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace LinkMe.Areas.Identity.Pages.Account
 {
@@ -46,20 +47,31 @@ namespace LinkMe.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Imię jest wymagane")]
+            [StringLength(100)]
+            [Display(Name = "Imię")]
+            public string Firstname { get; set; }
+
+            [Required(ErrorMessage = "Nazwisko jest wymagane")]
+            [StringLength(100)]
+            [Display(Name = "Nazwisko")]
+            public string Lastname { get; set; }
+
+            [Required(ErrorMessage = "E-mail jest wymagany")]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "E-mail")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Hasło jest wymagane")]
+            [StringLength(100, ErrorMessage = "{0} musi mieć co najmniej {2} znaków", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Hasło")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Powtórz hasło")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Powtórz hasło")]
+            [Compare("Password", ErrorMessage = "Hasła nie są takie same")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -71,11 +83,11 @@ namespace LinkMe.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.Email, Email = Input.Email, Firstname = Input.Firstname, Lastname = Input.Lastname };
                 user.UserType = UserType.Registered;
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -105,6 +117,7 @@ namespace LinkMe.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
+                    Console.WriteLine(error.Code);
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }

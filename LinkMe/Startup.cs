@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LinkMe.Areas.Identity;
+using LinkMe.Core;
 using LinkMe.Data;
 using LinkMe.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +26,8 @@ namespace LinkMe
         {
             services.AddSingleton<ILinkData, InMemoryLinkData>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddIdentityCore<User>()
+                .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddRazorPages();
         }
@@ -52,6 +48,13 @@ namespace LinkMe
 
             app.UseHttpsRedirection();
             app.UseStatusCodePagesWithReExecute("/Error", "?code={0}");
+
+            var supportedCultures = new[] { "pl" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+            app.UseRequestLocalization(localizationOptions);
+
             app.UseStaticFiles();
 
             app.UseRouting();

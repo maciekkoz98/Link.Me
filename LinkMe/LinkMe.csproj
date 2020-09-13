@@ -31,4 +31,20 @@
     <ProjectReference Include="..\LinkMe.Core\LinkMe.Core.csproj" />
     <ProjectReference Include="..\LinkMe.Data\LinkMe.Data.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Areas\Identity\LocalizedIdentityErrorMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LocalizedIdentityErrorMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Areas\Identity\LocalizedIdentityErrorMessages.pl.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Areas\Identity\LocalizedIdentityErrorMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedIdentityErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

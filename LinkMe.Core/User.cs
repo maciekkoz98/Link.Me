@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 
-namespace LinkMe.Core   
+namespace LinkMe.Core
 {
     public class User : IdentityUser
     {
         [PersonalData]
         public UserType UserType { get; set; }
+
+        [PersonalData]
+        public string Firstname { get; set; }
+
+        [PersonalData]
+        public string Lastname { get; set; }
     }
 }

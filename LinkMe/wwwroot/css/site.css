@@ -163,6 +163,7 @@ h2, .h2 {
 h3, .h3 {
     font-size: 2.1875rem;
     letter-spacing: 0.125rem;
+    margin-bottom: 0px;
 }
 
 h4, .h4 {
@@ -271,4 +272,30 @@ td {
     .summary-text {
         max-width: 363px;
     }
+}
+
+/* Login and register form styles */
+.form-box {
+    border: 2px solid #7B7A7A;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    padding: 2rem 4rem;
+}
+
+.form-heading {
+    margin-top: 0rem;
+    margin-bottom: 4rem;
+}
+
+.input-box {
+    margin-bottom: 2rem;
+}
+
+.login-checkbox {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+input.checkbox:hover {
+    background: #02D3C7;
 }

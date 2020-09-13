@@ -4,14 +4,16 @@ using LinkMe.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LinkMe.Migrations
 {
     [DbContext(typeof(LinkMeContext))]
-    partial class LinkMeContextModelSnapshot : ModelSnapshot
+    [Migration("20200827182213_firstlastname")]
+    partial class firstlastname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -16,7 +16,7 @@ namespace LinkMe.Core
 
         public string ShortLink { get; set; }
         public string OwnerID { get; set; }
-        public string ValidTo { get; set; } //lub DateTime
+        public DateTime ValidTo { get; set; } 
         public bool ShownSummary { get; set; }
 
         public void GenerateShortLink(UserType userType)
@@ -32,13 +32,13 @@ namespace LinkMe.Core
             switch (userType)
             {
                 case UserType.Unregistered:
-                    ValidTo = now.AddDays(3).ToShortDateString();
+                    ValidTo = now.AddDays(3);
                     break;
                 case UserType.Registered:
-                    ValidTo = now.AddDays(7).ToShortDateString();
+                    ValidTo = now.AddDays(7);
                     break;
                 case UserType.Premium:
-                    ValidTo = "forever";
+                    ValidTo = now.AddYears(100);
                     break;
             }
         }
