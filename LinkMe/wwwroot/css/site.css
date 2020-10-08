@@ -299,3 +299,54 @@ td {
 input.checkbox:hover {
     background: #02D3C7;
 }
+
+.card {
+    border: 2px solid #7B7A7A;
+    border-radius: 0.9375rem;
+    min-height: 600px;
+}
+
+.card-header {
+    background-clip: content-box;
+    background-color: #fff;
+    border-bottom: 1px solid #7B7A7A;
+    min-height: 109px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-clip: content-box;
+    background-color: #fff;
+    border-top: 1px solid #7B7A7A;
+}
+
+.card-body-ofert-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.card-body > *:last-child {
+    margin-bottom: 0px;
+}
+
+h3.card-body-text {
+    text-align: center;
+}
+
+.btn-card-register {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 1.9rem;
+    padding-right: 1.9rem;
+}
+
+@media(min-width:1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
