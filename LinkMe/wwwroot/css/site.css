@@ -41,7 +41,7 @@ a {
 }
 
 .btn-primary {
-    color: #7B7A7A;
+    color: #7B7A7A !important;
     fill: #7B7A7A;
     background-color: #02D3C7;
     border: 0px;
@@ -53,7 +53,7 @@ a {
 
     .btn-primary:hover .clone-svg .clone-path, .btn-primary:hover, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active {
         background-color: #7B7A7A;
-        color: #02D3C7;
+        color: #02D3C7 !important;
         fill: #02D3C7;
         box-shadow: none;
         outline: none;
@@ -300,10 +300,14 @@ input.checkbox:hover {
     background: #02D3C7;
 }
 
+.link-box {
+    margin-bottom: 7rem;
+}
+
 .card {
     border: 2px solid #7B7A7A;
     border-radius: 0.9375rem;
-    min-height: 600px;
+    min-height: 784px;
 }
 
 .card-header {
@@ -311,6 +315,17 @@ input.checkbox:hover {
     background-color: #fff;
     border-bottom: 1px solid #7B7A7A;
     min-height: 109px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
 }
 
 .card-footer {
@@ -322,12 +337,17 @@ input.checkbox:hover {
     border-top: 1px solid #7B7A7A;
 }
 
-.card-body-ofert-row {
+.offer-header-box{
+    margin-bottom: 2rem;
+}
+
+.card-body-offer-row {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     margin-bottom: 20px;
+    min-height: 84px;
 }
 
 .card-body > *:last-child {
@@ -336,6 +356,18 @@ input.checkbox:hover {
 
 h3.card-body-text {
     text-align: center;
+    max-width: 285px;
+}
+
+.card-body-text-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 84px;
+}
+
+.card-body-icon {
+    margin-right: 0.625rem;
 }
 
 .btn-card-register {
@@ -347,6 +379,6 @@ h3.card-body-text {
 
 @media(min-width:1200px) {
     .container {
-        max-width: 1200px;
+        max-width: 1320px;
     }
 }

@@ -9,18 +9,20 @@
 
 @inject SignInManager<User> SignInManager
 
-<p class="text-center h1">Wklej swój dłuuugi link!</p>
-<form name="linkForm" method="post">
-    <div class="form-group">
-        <div class="input-group">
-            <input class="form-control h3 rigth_margin" asp-for="Link.OriginalLink" />
-            <button name="btnsubmit" type="submit" class="btn btn-primary h3">
-                Skróć!
-            </button>
+<section class="link-box">
+    <p class="text-center h1">Wklej swój dłuuugi link!</p>
+    <form name="linkForm" method="post">
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control h3 rigth_margin" asp-for="Link.OriginalLink" />
+                <button name="btnsubmit" type="submit" class="btn btn-primary h3">
+                    Skróć!
+                </button>
+            </div>
+            <span class="text-danger h4" asp-validation-for="Link.OriginalLink"></span>
         </div>
-        <span class="text-danger h4" asp-validation-for="Link.OriginalLink"></span>
-    </div>
-</form>
+    </form>
+</section>
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -65,82 +67,122 @@
 }
 else
 {
-    <h3>Sprawdź pełnie możliwości Link.Me:</h3>
+    <section>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-body-text">Użytkownik</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-body-ofert-row">
-                            <h3 class="card-body-text">Bezpłatnie</h3>
+        <div class="offer-header-box">
+
+            <h3>Sprawdź pełnie możliwości Link.Me:</h3>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-icon-box">
+                                <svg fill="none" viewBox="0 0 150 150" width="150" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m75 25c-13.812 0-25 11.188-25 25s11.188 25 25 25 25-11.188 25-25-11.188-25-25-25zm12.5 25c0-6.875-5.625-12.5-12.5-12.5s-12.5 5.625-12.5 12.5 5.625 12.5 12.5 12.5 12.5-5.625 12.5-12.5zm25 56.25c-1.25-4.438-20.625-12.5-37.5-12.5s-36.25 8.062-37.5 12.562v6.188h75v-6.25zm-87.5 0c0-16.625 33.312-25 50-25s50 8.375 50 25v18.75h-100v-18.75z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="card-body-text-box">
+                                <h3 class="card-body-text">Użytkownik</h3>
+                            </div>
                         </div>
-                        <div class="card-body-ofert-row">
-                            ikona
-                            <h3 class="card-body-text">Link wygasa po trzech dniach</h3>
+                        <div class="card-body">
+                            <div class="card-body-offer-row">
+                                <h3 class="card-body-text">Bezpłatnie</h3>
+                            </div>
+                            <div class="card-body-offer-row">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m24.979 4.1666c-11.5 0-20.812 9.3334-20.812 20.833s9.3125 20.833 20.812 20.833c11.521 0 20.854-9.3333 20.854-20.833s-9.3334-20.833-20.854-20.833zm0.0208 37.5c-9.2083 0-16.667-7.4583-16.667-16.667 0-9.2084 7.4583-16.667 16.667-16.667 9.2084 0 16.667 7.4583 16.667 16.667 0 9.2083-7.4583 16.667-16.667 16.667zm-2.0833-27.083h3.125v10.938l9.375 5.5625-1.5625 2.5625-10.938-6.5625v-12.5z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                                <h3 class="card-body-text">Link wygasa po trzech dniach</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-body-text">Użytkownik zarejestrowany</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-body-ofert-row">
-                            <h3 class="card-body-text">Bezpłatnie</h3>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-icon-box">
+                                <svg viewBox="0 0 150 150" width="150" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m75 25c-13.812 0-25 11.188-25 25s11.188 25 25 25 25-11.188 25-25-11.188-25-25-25zm12.5 25c0-6.875-5.625-12.5-12.5-12.5s-12.5 5.625-12.5 12.5 5.625 12.5 12.5 12.5 12.5-5.625 12.5-12.5zm25 56.25c-1.25-4.438-20.625-12.5-37.5-12.5s-36.25 8.062-37.5 12.562v6.188h75v-6.25zm-87.5 0c0-16.625 33.312-25 50-25s50 8.375 50 25v18.75h-100v-18.75z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                    <path d="m125 104.17c-11.5 0-20.833 9.333-20.833 20.833s9.333 20.833 20.833 20.833 20.833-9.333 20.833-20.833-9.333-20.833-20.833-20.833z" fill="#7B7A7A" />
+                                    <circle cx="125" cy="125" r="16.667" fill="#fff" />
+                                    <path d="m134.56 115.79-13.729 13.729-5.396-5.375-2.937 2.938 8.333 8.333 16.667-16.667-2.938-2.958z" fill="#7B7A7A" />
+                                </svg>
+                            </div>
+                            <h3 class="card-body-text">Użytkownik zarejestrowany</h3>
                         </div>
-                        <div class="card-body-ofert-row">
-                            ikona
-                            <h3 class="card-body-text">Link wygasa po siedmiu dniach</h3>
+                        <div class="card-body">
+                            <div class="card-body-offer-row">
+                                <h3 class="card-body-text">Bezpłatnie</h3>
+                            </div>
+                            <div class="card-body-offer-row">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m24.979 4.1666c-11.5 0-20.812 9.3334-20.812 20.833s9.3125 20.833 20.812 20.833c11.521 0 20.854-9.3333 20.854-20.833s-9.3334-20.833-20.854-20.833zm0.0208 37.5c-9.2083 0-16.667-7.4583-16.667-16.667 0-9.2084 7.4583-16.667 16.667-16.667 9.2084 0 16.667 7.4583 16.667 16.667 0 9.2083-7.4583 16.667-16.667 16.667zm-2.0833-27.083h3.125v10.938l9.375 5.5625-1.5625 2.5625-10.938-6.5625v-12.5z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                                <h3 class="card-body-text">Link wygasa po siedmiu dniach</h3>
+                            </div>
+                            <div class="card-body-offer-row">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m25 4.1666c-8.0625 0-14.583 6.5209-14.583 14.583 0 10.938 14.583 27.083 14.583 27.083s14.583-16.146 14.583-27.083c0-8.0625-6.5209-14.583-14.583-14.583zm-10.417 14.583c0-5.75 4.6666-10.417 10.417-10.417s10.417 4.6667 10.417 10.417c0 6-6 14.979-10.417 20.583-4.3333-5.5625-10.417-14.646-10.417-20.583zm5.2083 0c0-2.8765 2.3319-5.2084 5.2083-5.2084 1.8608 0 3.5802 0.9927 4.5106 2.6042s0.9304 3.5969 0 5.2083c-0.9304 1.6115-2.6498 2.6042-4.5106 2.6042-2.8764 0-5.2083-2.3319-5.2083-5.2083z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                                <h3 class="card-body-text">Statystyki lokalizacji</h3>
+                            </div>
+                            <div class="card-body-offer-row">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m43.75 41.667v-29.167c0-2.2917-1.875-4.1667-4.1667-4.1667h-2.0833v-4.1667h-4.1667v4.1667h-16.667v-4.1667h-4.1667v4.1667h-2.0833c-2.3125 0-4.1459 1.875-4.1459 4.1667l-0.02083 29.167c0 2.2917 1.8542 4.1667 4.1667 4.1667h29.167c2.2917 0 4.1667-1.875 4.1667-4.1667zm-25-14.583v-4.1667h-4.1667v4.1667h4.1667zm-8.3333-10.417h29.167v-4.1666h-29.167v4.1666zm29.167 4.1667v20.833h-29.167v-20.833h29.167zm-4.1666 6.25v-4.1667h-4.1667v4.1667h4.1667zm-8.3334 0h-4.1666v-4.1667h4.1666v4.1667z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                                <h3 class="card-body-text">Statystyki odwiedzalności</h3>
+                            </div>
                         </div>
-                        <div class="card-body-ofert-row">
-                            ikona
-                            <h3 class="card-body-text">Statystyki lokalizacji</h3>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-card-register h3" asp-area="Identity" asp-page="/Account/Register">Zarejestruj się</a>
                         </div>
-                        <div class="card-body-ofert-row">
-                            ikona
-                            <h3 class="card-body-text">Statystyki odwiedzalności</h3>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary btn-card-register h3">Zarejestruj się</button>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-body-text">Użytkownik premium</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-body-ofert-row">
-                            <h3 class="card-body-text">10 zł / mies.</h3>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-icon-box">
+                                <svg fill="none" width="150" viewBox="0 0 150 121" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m18.62 35.08 6.7993 45.958h99.308l6.76-46.628-27.236 23.548-29.28-37.638-30.48 37.513-25.872-22.753zm78.27-11.985-0.6082 0.5225 1.0994 0.1091 9.0998 11.688 11.205-9.6844 1.091 0.1092-0.483-0.6394 18.815-16.265c1.203-1.0378 2.694-1.6834 4.274-1.8505 1.579-0.16708 3.172 0.15235 4.566 0.91554 1.393 0.76319 2.52 1.9337 3.23 3.355 0.709 1.4212 0.968 3.0253 0.741 4.5976l-11.696 80.68h-126.26l-11.875-80.313c-0.23589-1.581 0.019843-3.1964 0.73257-4.6272 0.71273-1.4309 1.848-2.6081 3.2521-3.3722s3.009-1.0783 4.5976-0.8999c1.5885 0.1784 3.0839 0.84073 4.2835 1.8973l17.942 15.79-0.3899 0.4678 0.8499-0.0624 11.259 9.9027 9.4505-11.642 0.8499-0.0702-0.4679-0.4054 16.616-20.421c0.7402-0.90987 1.6761-1.641 2.738-2.1391 1.0619-0.49801 2.2226-0.75003 3.3954-0.73729 1.1728 0.01274 2.3277 0.28991 3.3786 0.81087 1.0509 0.52096 1.9707 1.2723 2.6909 2.198l15.634 20.086h-0.0078zm-84.321 81.335h124.76v7.797c0 2.068-0.821 4.052-2.284 5.514-1.462 1.462-3.445 2.284-5.513 2.284h-109.16c-2.068 0-4.0513-0.822-5.5136-2.284s-2.2838-3.446-2.2838-5.514v-7.797z" fill="#EBCB5A" />
+                                </svg>
+                            </div>
+                            <h3 class="card-body-text">Użytkownik premium</h3>
                         </div>
-                        <div class="card-body-ofert-row">
-                            ikona
-                            <h3 class="card-body-text">Link nie wygasa</h3>
+                        <div class="card-body">
+                            <div class="card-body-offer-row">
+                                <h3 class="card-body-text">10 zł / mies.</h3>
+                            </div>
+                            <div class="card-body-offer-row">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m24.979 4.1666c-11.5 0-20.812 9.3334-20.812 20.833s9.3125 20.833 20.812 20.833c11.521 0 20.854-9.3333 20.854-20.833s-9.3334-20.833-20.854-20.833zm0.0208 37.5c-9.2083 0-16.667-7.4583-16.667-16.667 0-9.2084 7.4583-16.667 16.667-16.667 9.2084 0 16.667 7.4583 16.667 16.667 0 9.2083-7.4583 16.667-16.667 16.667zm-2.0833-27.083h3.125v10.938l9.375 5.5625-1.5625 2.5625-10.938-6.5625v-12.5z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                                <h3 class="card-body-text">Link nie wygasa</h3>
+                            </div>
+                            <div class="card-body-offer-row">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m25 4.1666c-8.0625 0-14.583 6.5209-14.583 14.583 0 10.938 14.583 27.083 14.583 27.083s14.583-16.146 14.583-27.083c0-8.0625-6.5209-14.583-14.583-14.583zm-10.417 14.583c0-5.75 4.6666-10.417 10.417-10.417s10.417 4.6667 10.417 10.417c0 6-6 14.979-10.417 20.583-4.3333-5.5625-10.417-14.646-10.417-20.583zm5.2083 0c0-2.8765 2.3319-5.2084 5.2083-5.2084 1.8608 0 3.5802 0.9927 4.5106 2.6042s0.9304 3.5969 0 5.2083c-0.9304 1.6115-2.6498 2.6042-4.5106 2.6042-2.8764 0-5.2083-2.3319-5.2083-5.2083z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                                <h3 class="card-body-text">Statystyki lokalizacji</h3>
+                            </div>
+                            <div class="card-body-offer-row">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m43.75 41.667v-29.167c0-2.2917-1.875-4.1667-4.1667-4.1667h-2.0833v-4.1667h-4.1667v4.1667h-16.667v-4.1667h-4.1667v4.1667h-2.0833c-2.3125 0-4.1459 1.875-4.1459 4.1667l-0.02083 29.167c0 2.2917 1.8542 4.1667 4.1667 4.1667h29.167c2.2917 0 4.1667-1.875 4.1667-4.1667zm-25-14.583v-4.1667h-4.1667v4.1667h4.1667zm-8.3333-10.417h29.167v-4.1666h-29.167v4.1666zm29.167 4.1667v20.833h-29.167v-20.833h29.167zm-4.1666 6.25v-4.1667h-4.1667v4.1667h4.1667zm-8.3334 0h-4.1666v-4.1667h4.1666v4.1667z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
+                                </svg>
+                                <h3 class="card-body-text">Statystyki odwiedzalności</h3>
+                            </div>
                         </div>
-                        <div class="card-body-ofert-row">
-                            ikona
-                            <h3 class="card-body-text">Statystyki lokalizacji</h3>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-card-register h3" asp-area="Identity" asp-page="/Account/Register">Zarejestruj się</a>
                         </div>
-                        <div class="card-body-ofert-row">
-                            ikona
-                            <h3 class="card-body-text">Statystyki odwiedzalności</h3>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary btn-card-register h3">Zarejestruj się</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 }
 
 @section Scripts{
