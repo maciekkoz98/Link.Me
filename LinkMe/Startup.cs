@@ -1,6 +1,7 @@
 ﻿using LinkMe.Areas.Identity;
 using LinkMe.Core;
 using LinkMe.Data;
+using LinkMe.Middlewares;
 using LinkMe.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,7 @@ namespace LinkMe
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ILinkData, InMemoryLinkData>();
+            services.AddSingleton<ILinkClickData, InMemoryLinkClickData>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddIdentityCore<User>()
                 .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
@@ -58,6 +60,7 @@ namespace LinkMe
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseRequestForward();
 
             app.UseAuthentication();
             app.UseAuthorization();

@@ -32,7 +32,7 @@ namespace LinkMe.Core
 
             var now = DateTime.UtcNow;
             linkToShort.Append(now.ToString());
-            this.ShortLink = "https://link.me/" + this.Adler32(linkToShort.ToString()).ToString("X").ToLower();
+            this.ShortLink = this.Adler32(linkToShort.ToString()).ToString("X").ToLower();
             switch (userType)
             {
                 case UserType.Unregistered:

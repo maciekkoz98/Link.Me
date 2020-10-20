@@ -1,4 +1,6 @@
-﻿namespace LinkMe.Core
+﻿using System;
+
+namespace LinkMe.Core
 {
     public class LinkClick
     {
@@ -6,8 +8,8 @@
 
         public int LinkID { get; set; }
 
-        public int IPAddress { get; set; }
+        public string IPAddress { get; set; }
 
-        public string WhenClicked { get; set; }
+        public DateTime WhenClicked { get; set; }
     }
 }

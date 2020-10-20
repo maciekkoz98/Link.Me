@@ -13,6 +13,8 @@ namespace LinkMe.Data
 
         Link Delete(int id);
 
+        Link GetLinkByShortLink(string shortLink);
+
         IEnumerable<Link> GetLinksByOwnerID(string ownerID);
 
         int GetCountLinks();

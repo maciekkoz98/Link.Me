@@ -13,9 +13,9 @@ namespace LinkMe.Data
         {
             this.links = new List<Link>()
             {
-                new Link { ID = 1, OriginalLink = "https://facebook.com", ShortLink = "https://Link.Me/asd4q21", OwnerID = "-1", ValidTo = DateTime.UtcNow.AddDays(4), ShownSummary = false },
-                new Link { ID = 2, OriginalLink = "https://google.com", ShortLink = "https://Link.Me/jhf435a", OwnerID = "0", ValidTo = DateTime.UtcNow.AddDays(3), ShownSummary = true },
-                new Link { ID = 3, OriginalLink = "https://wp.pl", ShortLink = "https://Link.Me/kjsd9or3", OwnerID = "1", ValidTo = DateTime.UtcNow.AddDays(20), ShownSummary = true },
+                new Link { ID = 1, OriginalLink = "https://facebook.com", ShortLink = "asd4q21", OwnerID = "-1", ValidTo = DateTime.UtcNow.AddDays(4), ShownSummary = false },
+                new Link { ID = 2, OriginalLink = "https://google.com", ShortLink = "jhf435a", OwnerID = "0", ValidTo = DateTime.UtcNow.AddDays(3), ShownSummary = true },
+                new Link { ID = 3, OriginalLink = "https://wp.pl", ShortLink = "kjsd9or3", OwnerID = "1", ValidTo = DateTime.UtcNow.AddDays(20), ShownSummary = true },
             };
         }
 
@@ -50,6 +50,11 @@ namespace LinkMe.Data
         public Link GetLinkByID(int id)
         {
             return this.links.SingleOrDefault(l => l.ID == id);
+        }
+
+        public Link GetLinkByShortLink(string shortLink)
+        {
+            return this.links.SingleOrDefault(l => l.ShortLink.Equals(shortLink));
         }
 
         public IEnumerable<Link> GetLinksByOwnerID(string ownerID)
