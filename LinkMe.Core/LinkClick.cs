@@ -10,6 +10,10 @@ namespace LinkMe.Core
 
         public string IPAddress { get; set; }
 
+        public string Country { get; set; }
+
+        public string CountryRegion { get; set; }
+
         public DateTime WhenClicked { get; set; }
     }
 }

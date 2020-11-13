@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Net.Http.Headers;
 
 namespace LinkMe
 {
@@ -31,6 +33,11 @@ namespace LinkMe
                 .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
             services.Configure<AuthMessageSenderOptions>(this.Configuration);
             services.AddRazorPages();
+            services.AddHttpClient("locationApi", client =>
+            {
+                client.BaseAddress = new Uri("https://freegeoip.app/json/");
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

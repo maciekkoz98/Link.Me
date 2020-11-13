@@ -18,13 +18,15 @@ namespace LinkMe.Data
             };
         }
 
-        public LinkClick AddLinkClick(int linkID, string ipAddress)
+        public LinkClick AddLinkClick(int linkID, string ipAddress, string country, string countryRegion)
         {
             var newLinkClick = new LinkClick
             {
                 LinkID = linkID,
                 IPAddress = ipAddress,
                 WhenClicked = DateTime.UtcNow,
+                Country = country,
+                CountryRegion = countryRegion,
             };
             this.linkClicks.Add(newLinkClick);
             newLinkClick.ID = this.linkClicks.Max(l => l.ID) + 1;

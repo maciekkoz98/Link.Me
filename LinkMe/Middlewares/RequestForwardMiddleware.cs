@@ -1,6 +1,10 @@
 ﻿using LinkMe.Data;
+using LinkMe.Middlewares.Utils;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
+using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace LinkMe.Middlewares
@@ -14,7 +18,7 @@ namespace LinkMe.Middlewares
             this.next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context, ILinkData linkData, ILinkClickData linkClickData)
+        public async Task InvokeAsync(HttpContext context, ILinkData linkData, ILinkClickData linkClickData, IHttpClientFactory clientFactory)
         {
             var endpoint = context.GetEndpoint();
             if (endpoint == null)
@@ -28,12 +32,23 @@ namespace LinkMe.Middlewares
                     return;
                 }
 
-                // TODO find out if the remote address is always ::1
-                Console.WriteLine(context.Connection.RemoteIpAddress.ToString());
-                Console.WriteLine(context.Request.Path);
                 if (link.ValidTo >= DateTime.UtcNow)
                 {
-                    linkClickData.AddLinkClick(link.ID, context.Connection.RemoteIpAddress.ToString());
+                    var ip = context.Connection.RemoteIpAddress.ToString();
+                    if (ip.Equals("::1"))
+                    {
+                        ip = "77.252.193.249";
+                    }
+
+                    var httpClient = clientFactory.CreateClient("locationApi");
+                    var response = await httpClient.GetAsync(ip);
+                    using var responseStream = await response.Content.ReadAsStreamAsync();
+                    using var streamReader = new StreamReader(responseStream);
+                    using var jsonReader = new JsonTextReader(streamReader);
+                    var serializer = new JsonSerializer();
+                    var json = serializer.Deserialize<GeoApiResponse>(jsonReader);
+
+                    linkClickData.AddLinkClick(link.ID, ip, json.CountryName, json.RegionName);
                     context.Response.Redirect(link.OriginalLink);
                     return;
                 }
