@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LinkMe.Core.Enums;
+using Microsoft.AspNetCore.Identity;
 
-namespace LinkMe.Core
+namespace LinkMe.Core.Entities
 {
     public class User : IdentityUser
     {

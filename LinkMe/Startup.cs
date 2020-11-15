@@ -1,6 +1,7 @@
 ﻿using LinkMe.Areas.Identity;
-using LinkMe.Core;
-using LinkMe.Data;
+using LinkMe.Core.Entities;
+using LinkMe.Core.Interfaces;
+using LinkMe.Data.InMemoryRepositories;
 using LinkMe.Middlewares;
 using LinkMe.Services;
 using Microsoft.AspNetCore.Builder;

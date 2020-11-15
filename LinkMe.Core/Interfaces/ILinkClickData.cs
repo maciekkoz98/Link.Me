@@ -1,7 +1,7 @@
-﻿using LinkMe.Core;
+﻿using LinkMe.Core.Entities;
 using System.Collections.Generic;
 
-namespace LinkMe.Data
+namespace LinkMe.Core.Interfaces
 {
     public interface ILinkClickData
     {

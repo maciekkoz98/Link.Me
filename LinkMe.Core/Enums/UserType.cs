@@ -1,4 +1,4 @@
-﻿namespace LinkMe.Core
+﻿namespace LinkMe.Core.Enums
 {
     public enum UserType
     {

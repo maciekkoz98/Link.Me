@@ -1,4 +1,5 @@
-﻿using LinkMe.Core;
+﻿using LinkMe.Core.Entities;
+using LinkMe.Core.Enums;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

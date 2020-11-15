@@ -1,6 +1,6 @@
 ﻿using LinkMe.Areas.Identity.Data;
-using LinkMe.Core;
-using LinkMe.Data;
+using LinkMe.Core.Entities;
+using LinkMe.Data.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

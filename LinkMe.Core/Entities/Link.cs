@@ -1,22 +1,23 @@
-﻿using System;
+﻿using LinkMe.Core.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text;
 
-namespace LinkMe.Core
+namespace LinkMe.Core.Entities
 {
-    public class Link : IValidatableObject
+    public class Link : BaseEntity, IValidatableObject
     {
-        public int ID { get; set; }
-
         [Required(ErrorMessage = "Nie podano linku")]
+        [StringLength(200)]
         [Url(ErrorMessage = "Podany link jest nieprawidłowy")]
         public string OriginalLink { get; set; }
 
+        [StringLength(15)]
         public string ShortLink { get; set; }
 
-        public string OwnerID { get; set; }
+        public string OwnerId { get; set; }
 
         public DateTime ValidTo { get; set; }
 

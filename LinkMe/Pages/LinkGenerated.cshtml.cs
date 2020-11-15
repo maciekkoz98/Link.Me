@@ -1,5 +1,5 @@
-﻿using LinkMe.Core;
-using LinkMe.Data;
+﻿using LinkMe.Core.Entities;
+using LinkMe.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

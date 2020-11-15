@@ -1,8 +1,8 @@
-﻿using LinkMe.Core;
+﻿using LinkMe.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace LinkMe.Data
+namespace LinkMe.Data.Context
 {
     public class LinkMeContext : IdentityDbContext<User>
     {
@@ -10,6 +10,10 @@ namespace LinkMe.Data
             : base(options)
         {
         }
+
+        public DbSet<Link> Links { get; set; }
+
+        public DbSet<LinkClick> LinkClicks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

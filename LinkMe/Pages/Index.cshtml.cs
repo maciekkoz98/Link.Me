@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using LinkMe.Core;
-using LinkMe.Data;
+using LinkMe.Core.Entities;
+using LinkMe.Core.Interfaces;
+using LinkMe.Core.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -54,13 +55,13 @@ namespace LinkMe.Pages
                 {
                     var userTypeClaim = this.User.Claims.FirstOrDefault(x => x.Type == "UserType");
                     this.Link.GenerateShortLink(Enum.Parse<UserType>(userTypeClaim.Value));
-                    this.Link.OwnerID = userIDClaim.Value;
+                    this.Link.OwnerId = userIDClaim.Value;
                 }
 
                 this.Link.ShownSummary = false;
                 this.linkData.Add(this.Link);
                 this.linkData.Commit();
-                return this.RedirectToPage("./LinkGenerated", new { id = this.Link.ID });
+                return this.RedirectToPage("./LinkGenerated", new { id = this.Link.Id });
             }
         }
     }

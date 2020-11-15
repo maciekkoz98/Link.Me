@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using LinkMe.Core;
+using LinkMe.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

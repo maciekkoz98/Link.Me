@@ -1,4 +1,4 @@
-﻿using LinkMe.Data;
+﻿using LinkMe.Core.Interfaces;
 using LinkMe.Middlewares.Utils;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -48,7 +48,7 @@ namespace LinkMe.Middlewares
                     var serializer = new JsonSerializer();
                     var json = serializer.Deserialize<GeoApiResponse>(jsonReader);
 
-                    linkClickData.AddLinkClick(link.ID, ip, json.CountryName, json.RegionName);
+                    linkClickData.AddLinkClick(link.Id, ip, json.CountryName, json.RegionName);
                     context.Response.Redirect(link.OriginalLink);
                     return;
                 }

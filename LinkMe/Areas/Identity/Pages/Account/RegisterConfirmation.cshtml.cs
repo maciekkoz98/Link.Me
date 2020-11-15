@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
-using LinkMe.Core;
+﻿using LinkMe.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace LinkMe.Areas.Identity.Pages.Account
 {
