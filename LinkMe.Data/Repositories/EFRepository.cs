@@ -10,7 +10,7 @@ namespace LinkMe.Data.Repositories
     public class EFRepository<T> : IAsyncRepository<T>
         where T : BaseEntity
     {
-        private readonly LinkMeContext dbContext;
+        protected readonly LinkMeContext dbContext;
 
         public EFRepository(LinkMeContext dbContext)
         {
