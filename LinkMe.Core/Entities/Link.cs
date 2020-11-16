@@ -17,6 +17,7 @@ namespace LinkMe.Core.Entities
         [StringLength(15)]
         public string ShortLink { get; set; }
 
+        [StringLength(450)]
         public string OwnerId { get; set; }
 
         public DateTime ValidTo { get; set; }

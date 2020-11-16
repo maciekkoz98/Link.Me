@@ -2,25 +2,26 @@
 using LinkMe.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace LinkMe.Pages
 {
     public class LinkGeneratedModel : PageModel
     {
-        private readonly ILinkData linkData;
+        private readonly ILinkRepository linkRepository;
 
-        public LinkGeneratedModel(ILinkData linkData)
+        public LinkGeneratedModel(ILinkRepository linkRepository)
         {
-            this.linkData = linkData;
+            this.linkRepository = linkRepository;
         }
 
         public Link Link { get; set; }
 
-        public IActionResult OnGet([FromQuery] int id = -1)
+        public async Task<IActionResult> OnGetAsync([FromQuery] int id = -1)
         {
             if (id != -1)
             {
-                this.Link = this.linkData.GetLinkByID(id);
+                this.Link = await this.linkRepository.GetByIdAsync(id);
             }
             else
             {

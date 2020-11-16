@@ -1,4 +1,5 @@
-﻿using LinkMe.Core.Interfaces;
+﻿using LinkMe.Core.Entities;
+using LinkMe.Core.Interfaces;
 using LinkMe.Middlewares.Utils;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -18,14 +19,14 @@ namespace LinkMe.Middlewares
             this.next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context, ILinkData linkData, ILinkClickData linkClickData, IHttpClientFactory clientFactory)
+        public async Task InvokeAsync(HttpContext context, ILinkRepository linkRepository, ILinkClickRepository linkClickRepository, IHttpClientFactory clientFactory)
         {
             var endpoint = context.GetEndpoint();
             if (endpoint == null)
             {
                 // TODO dostań się do bazy i sprawdź czy jest link o podanym skrócie, jesli nie to zwróć 404
                 // potem sprawdź czy termin jest ok -> przekieruj, jeśli nie pokaż planszę o wygaśnięciu linku
-                var link = linkData.GetLinkByShortLink(context.Request.Path.ToString().Substring(1));
+                var link = await linkRepository.GetLinkByShortLinkAsync(context.Request.Path.ToString().Substring(1));
                 if (link == null)
                 {
                     await this.next(context);
@@ -48,7 +49,15 @@ namespace LinkMe.Middlewares
                     var serializer = new JsonSerializer();
                     var json = serializer.Deserialize<GeoApiResponse>(jsonReader);
 
-                    linkClickData.AddLinkClick(link.Id, ip, json.CountryName, json.RegionName);
+                    var linkClick = new LinkClick()
+                    {
+                        LinkId = link.Id,
+                        IPAddress = ip,
+                        Country = json.CountryName,
+                        CountryRegion = json.RegionName,
+                        WhenClicked = DateTime.UtcNow,
+                    };
+                    await linkClickRepository.AddAsync(linkClick);
                     context.Response.Redirect(link.OriginalLink);
                     return;
                 }

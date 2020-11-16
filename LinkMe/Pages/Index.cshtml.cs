@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace LinkMe.Pages
 {
@@ -16,12 +17,12 @@ namespace LinkMe.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> logger;
-        private readonly ILinkData linkData;
+        private readonly ILinkRepository linkRepository;
 
-        public IndexModel(ILogger<IndexModel> logger, ILinkData linkData)
+        public IndexModel(ILogger<IndexModel> logger, ILinkRepository linkRepository)
         {
             this.logger = logger;
-            this.linkData = linkData;
+            this.linkRepository = linkRepository;
         }
 
         [BindProperty]
@@ -29,16 +30,16 @@ namespace LinkMe.Pages
 
         public IEnumerable<Link> Links { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
             var userIDClaim = this.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
             if (userIDClaim != null)
             {
-                this.Links = this.linkData.GetLinksByOwnerID(userIDClaim.Value);
+                this.Links = await this.linkRepository.GetLinksByUserId(userIDClaim.Value);
             }
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!this.ModelState.IsValid)
             {
@@ -59,8 +60,7 @@ namespace LinkMe.Pages
                 }
 
                 this.Link.ShownSummary = false;
-                this.linkData.Add(this.Link);
-                this.linkData.Commit();
+                await this.linkRepository.AddAsync(this.Link);
                 return this.RedirectToPage("./LinkGenerated", new { id = this.Link.Id });
             }
         }

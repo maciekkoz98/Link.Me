@@ -1,7 +1,7 @@
 ﻿using LinkMe.Areas.Identity;
 using LinkMe.Core.Entities;
 using LinkMe.Core.Interfaces;
-using LinkMe.Data.InMemoryRepositories;
+using LinkMe.Data.Repositories;
 using LinkMe.Middlewares;
 using LinkMe.Services;
 using Microsoft.AspNetCore.Builder;
@@ -27,8 +27,8 @@ namespace LinkMe
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ILinkData, InMemoryLinkData>();
-            services.AddSingleton<ILinkClickData, InMemoryLinkClickData>();
+            services.AddScoped<ILinkRepository, LinkRepository>();
+            services.AddScoped<ILinkClickRepository, LinkClickRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddIdentityCore<User>()
                 .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
