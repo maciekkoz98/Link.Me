@@ -1,4 +1,5 @@
-﻿using LinkMe.Core.Entities;
+﻿using LinkMe.Core.DTOs;
+using LinkMe.Core.Entities;
 using LinkMe.Core.Interfaces;
 using LinkMe.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,43 @@ namespace LinkMe.Data.Repositories
         {
         }
 
-        public async Task<IReadOnlyList<LinkClick>> GetCicksByLinkId(int linkId)
+        public async Task<IReadOnlyList<LinkClick>> GetCicksByLinkIdAsync(int linkId)
         {
             return await this.dbContext.LinkClicks.Where(x => x.LinkId.Equals(linkId)).ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<DateStatsDto>> GetDateStatsByLinkIdAsync(int linkId)
+        {
+            return await this.dbContext.LinkClicks
+                .Where(x => x.LinkId.Equals(linkId))
+                .GroupBy(x => new
+                {
+                    x.WhenClicked,
+                })
+                .Select(x => new DateStatsDto()
+                {
+                    ClickDate = x.Key.WhenClicked,
+                    Count = x.Count(),
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<RegionStatsDto>> GetRegionsStatsByLinkIdAsync(int linkId)
+        {
+            return await this.dbContext.LinkClicks
+                .Where(x => x.LinkId.Equals(linkId))
+                .GroupBy(x => new
+                {
+                    x.Country,
+                    x.CountryRegion,
+                })
+                .Select(x => new RegionStatsDto()
+                {
+                    Country = x.Key.Country,
+                    Region = x.Key.CountryRegion,
+                    Count = x.Count(),
+                })
+               .ToListAsync();
         }
     }
 }

@@ -24,6 +24,8 @@ namespace LinkMe.Core.Entities
 
         public bool ShownSummary { get; set; }
 
+        public List<LinkClick> LinkClicks { get; set; }
+
         public void GenerateShortLink(UserType userType)
         {
             StringBuilder linkToShort = new StringBuilder(this.OriginalLink);

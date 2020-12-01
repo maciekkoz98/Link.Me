@@ -15,6 +15,11 @@ namespace LinkMe.Data.Repositories
         {
         }
 
+        public async Task<Link> GetFullLink(int id)
+        {
+            return await this.dbContext.Links.Include(x => x.LinkClicks).FirstOrDefaultAsync(x => x.Id.Equals(id));
+        }
+
         public async Task<IReadOnlyList<Link>> GetLinksByUserId(string userId)
         {
             return await this.dbContext.Links.Where(x => x.OwnerId.Equals(userId)).ToListAsync();

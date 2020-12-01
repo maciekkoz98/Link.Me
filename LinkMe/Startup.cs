@@ -2,6 +2,7 @@
 using LinkMe.Core.Entities;
 using LinkMe.Core.Interfaces;
 using LinkMe.Data.Repositories;
+using LinkMe.Data.Services;
 using LinkMe.Middlewares;
 using LinkMe.Services;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +30,7 @@ namespace LinkMe
         {
             services.AddScoped<ILinkRepository, LinkRepository>();
             services.AddScoped<ILinkClickRepository, LinkClickRepository>();
+            services.AddScoped<ILinkStatsService, LinkStatsService>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddIdentityCore<User>()
                 .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
@@ -76,6 +78,7 @@ namespace LinkMe
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

@@ -30,9 +30,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\LinkStats\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LinkMe.Core\LinkMe.Core.csproj" />
     <ProjectReference Include="..\LinkMe.Data\LinkMe.Data.csproj" />
   </ItemGroup>

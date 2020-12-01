@@ -36,6 +36,10 @@ a {
     color: #0366d6;
 }
 
+a.no-accent:hover {
+    text-decoration: none;
+}
+
 .btn {
     display: flex;
 }
@@ -90,6 +94,38 @@ a {
     color: #02D3C7 !important;
     border: 0.1875rem #02D3C7 solid;
 }
+
+.btn-back {
+    background-color: #fff;
+    color: #7B7A7A !important;
+    border: 0.1875rem #7B7A7A solid;
+    max-height: 40px;
+}
+
+    .btn-back:hover, .btn-back:focus, .btn-back:active {
+        background-color: #7B7A7A;
+        color: #fff !important;
+    }
+
+    .btn-back:active, .btn-back:focus {
+        box-shadow: 0 0 0 0.2rem #02D3C7;
+    }
+
+.btn-delete {
+    background-color: #fff;
+    color: #EC5635 !important;
+    border: 0.1875rem #EC5635 solid;
+    max-height: 40px;
+}
+
+    .btn-delete:hover, .btn-delete:focus, .btn-delete:active {
+        background-color: #EC5635;
+        color: #fff !important;
+    }
+
+    .btn-delete:active, .btn-delete:focus {
+        box-shadow: 0 0 0 0.2rem #F2927D;
+    }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
@@ -151,6 +187,9 @@ body {
 h1, .h1 {
     font-size: 4.3rem;
     letter-spacing: 0.019rem;
+}
+
+.h1-margin {
     margin-top: 5rem;
     margin-bottom: 2.375rem;
 }
@@ -337,7 +376,7 @@ input.checkbox:hover {
     border-top: 1px solid #7B7A7A;
 }
 
-.offer-header-box{
+.offer-header-box {
     margin-bottom: 2rem;
 }
 

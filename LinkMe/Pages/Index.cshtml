@@ -10,7 +10,7 @@
 @inject SignInManager<User> SignInManager
 
 <section class="link-box">
-    <p class="text-center h1">Wklej swój dłuuugi link!</p>
+    <p class="text-center h1 h1-margin">Wklej swój dłuuugi link!</p>
     <form name="linkForm" method="post">
         <div class="form-group">
             <div class="input-group">
@@ -48,13 +48,15 @@
                     {
                         <td class="align-middle">@link.OriginalLink</td>
                     }
-                    <td class="align-middle">@link.ShortLink</td>
+                    <td class="align-middle">https://link.me/@link.ShortLink</td>
                     <td class="align-middle">@link.ValidTo</td>
                     <td class="align-middle">
                         <!--Stats icon-->
-                        <svg class="table-icon stats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" />
-                        </svg>
+                        <a class="no-accent" asp-page="./Link" asp-route-linkId="@link.Id">
+                            <svg class="table-icon stats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" />
+                            </svg>
+                        </a>
                         <!--Delete icon-->
                         <svg class="table-icon delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.12 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z" />
@@ -93,7 +95,7 @@ else
                                 <h3 class="card-body-text">Bezpłatnie</h3>
                             </div>
                             <div class="card-body-offer-row">
-                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m24.979 4.1666c-11.5 0-20.812 9.3334-20.812 20.833s9.3125 20.833 20.812 20.833c11.521 0 20.854-9.3333 20.854-20.833s-9.3334-20.833-20.854-20.833zm0.0208 37.5c-9.2083 0-16.667-7.4583-16.667-16.667 0-9.2084 7.4583-16.667 16.667-16.667 9.2084 0 16.667 7.4583 16.667 16.667 0 9.2083-7.4583 16.667-16.667 16.667zm-2.0833-27.083h3.125v10.938l9.375 5.5625-1.5625 2.5625-10.938-6.5625v-12.5z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
                                 </svg>
                                 <h3 class="card-body-text">Link wygasa po trzech dniach</h3>
@@ -119,19 +121,19 @@ else
                                 <h3 class="card-body-text">Bezpłatnie</h3>
                             </div>
                             <div class="card-body-offer-row">
-                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m24.979 4.1666c-11.5 0-20.812 9.3334-20.812 20.833s9.3125 20.833 20.812 20.833c11.521 0 20.854-9.3333 20.854-20.833s-9.3334-20.833-20.854-20.833zm0.0208 37.5c-9.2083 0-16.667-7.4583-16.667-16.667 0-9.2084 7.4583-16.667 16.667-16.667 9.2084 0 16.667 7.4583 16.667 16.667 0 9.2083-7.4583 16.667-16.667 16.667zm-2.0833-27.083h3.125v10.938l9.375 5.5625-1.5625 2.5625-10.938-6.5625v-12.5z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
                                 </svg>
                                 <h3 class="card-body-text">Link wygasa po siedmiu dniach</h3>
                             </div>
                             <div class="card-body-offer-row">
-                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m25 4.1666c-8.0625 0-14.583 6.5209-14.583 14.583 0 10.938 14.583 27.083 14.583 27.083s14.583-16.146 14.583-27.083c0-8.0625-6.5209-14.583-14.583-14.583zm-10.417 14.583c0-5.75 4.6666-10.417 10.417-10.417s10.417 4.6667 10.417 10.417c0 6-6 14.979-10.417 20.583-4.3333-5.5625-10.417-14.646-10.417-20.583zm5.2083 0c0-2.8765 2.3319-5.2084 5.2083-5.2084 1.8608 0 3.5802 0.9927 4.5106 2.6042s0.9304 3.5969 0 5.2083c-0.9304 1.6115-2.6498 2.6042-4.5106 2.6042-2.8764 0-5.2083-2.3319-5.2083-5.2083z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
                                 </svg>
                                 <h3 class="card-body-text">Statystyki lokalizacji</h3>
                             </div>
                             <div class="card-body-offer-row">
-                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m43.75 41.667v-29.167c0-2.2917-1.875-4.1667-4.1667-4.1667h-2.0833v-4.1667h-4.1667v4.1667h-16.667v-4.1667h-4.1667v4.1667h-2.0833c-2.3125 0-4.1459 1.875-4.1459 4.1667l-0.02083 29.167c0 2.2917 1.8542 4.1667 4.1667 4.1667h29.167c2.2917 0 4.1667-1.875 4.1667-4.1667zm-25-14.583v-4.1667h-4.1667v4.1667h4.1667zm-8.3333-10.417h29.167v-4.1666h-29.167v4.1666zm29.167 4.1667v20.833h-29.167v-20.833h29.167zm-4.1666 6.25v-4.1667h-4.1667v4.1667h4.1667zm-8.3334 0h-4.1666v-4.1667h4.1666v4.1667z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
                                 </svg>
                                 <h3 class="card-body-text">Statystyki odwiedzalności</h3>
@@ -157,13 +159,13 @@ else
                                 <h3 class="card-body-text">10 zł / mies.</h3>
                             </div>
                             <div class="card-body-offer-row">
-                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m24.979 4.1666c-11.5 0-20.812 9.3334-20.812 20.833s9.3125 20.833 20.812 20.833c11.521 0 20.854-9.3333 20.854-20.833s-9.3334-20.833-20.854-20.833zm0.0208 37.5c-9.2083 0-16.667-7.4583-16.667-16.667 0-9.2084 7.4583-16.667 16.667-16.667 9.2084 0 16.667 7.4583 16.667 16.667 0 9.2083-7.4583 16.667-16.667 16.667zm-2.0833-27.083h3.125v10.938l9.375 5.5625-1.5625 2.5625-10.938-6.5625v-12.5z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
                                 </svg>
                                 <h3 class="card-body-text">Link nie wygasa</h3>
                             </div>
                             <div class="card-body-offer-row">
-                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50"  xmlns="http://www.w3.org/2000/svg">
+                                <svg class="card-body-icon" fill="none" viewBox="0 0 50 50" width="50" xmlns="http://www.w3.org/2000/svg">
                                     <path d="m25 4.1666c-8.0625 0-14.583 6.5209-14.583 14.583 0 10.938 14.583 27.083 14.583 27.083s14.583-16.146 14.583-27.083c0-8.0625-6.5209-14.583-14.583-14.583zm-10.417 14.583c0-5.75 4.6666-10.417 10.417-10.417s10.417 4.6667 10.417 10.417c0 6-6 14.979-10.417 20.583-4.3333-5.5625-10.417-14.646-10.417-20.583zm5.2083 0c0-2.8765 2.3319-5.2084 5.2083-5.2084 1.8608 0 3.5802 0.9927 4.5106 2.6042s0.9304 3.5969 0 5.2083c-0.9304 1.6115-2.6498 2.6042-4.5106 2.6042-2.8764 0-5.2083-2.3319-5.2083-5.2083z" clip-rule="evenodd" fill="#7B7A7A" fill-rule="evenodd" />
                                 </svg>
                                 <h3 class="card-body-text">Statystyki lokalizacji</h3>

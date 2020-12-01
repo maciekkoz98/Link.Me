@@ -1,0 +1,52 @@
+﻿@page  "{linkId:int}"
+@model LinkMe.Pages.LinkStatsModel
+@{
+    ViewData["Title"] = "LinkStats";
+}
+
+<script src="//cdn.amcharts.com/lib/4/core.js"></script>
+<script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+
+<script src=".../lang/pl_PL.js"></script>
+<script>
+    chart.language.locale = am4lang_pl_PL;
+</script>
+
+<div class="d-flex justify-content-between align-items-center h1-margin">
+    <a class="btn btn-login btn-back" asp-page="/Index">Powrót</a>
+    <h1>Statystyki</h1>
+    <button class="btn btn-login btn-delete">Usuń link</button>
+</div>
+<div>
+    <div class="d-flex flex-row">
+        <h3 style="min-width:191px">Link:</h3>
+        <a class="h3 ml-5" href="#">https://www.wp.pl</a>
+    </div>
+    <div class="d-flex flex-row mt-3">
+        <h3>Krótki link:</h3>
+        <a class="h3 ml-5" href="#">https://link.me/5sdfw945</a>
+    </div>
+</div>
+<div class="flex-parent">
+    <div class="flex-parent">
+        <svg class="summary-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM11 7H12.5V12.25L17 14.92L16.25 16.15L11 13V7Z"></path>
+        </svg>
+        <h4 class="summary-text text-center">Twój link wygasa za 3 dni <a href="#">zmień datę</a></h4>
+    </div>
+    <div class="flex-parent">
+        <svg class="summary-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L19.71 9.71L22 12V6H16Z"></path>
+        </svg>
+        <h4 class="summary-text text-center">Link kliknięto @Model.Link.LinkClicks.Count() razy</h4>
+    </div>
+</div>
+<div class="mt-5">
+    <h3>Wygenerowany ruch:</h3>
+    <div id="clickChart"></div>
+</div>
+<div class="mt-5">
+    <h3>Lokalizacje:</h3>
+    <div id="locationsMap"></div>
+</div>

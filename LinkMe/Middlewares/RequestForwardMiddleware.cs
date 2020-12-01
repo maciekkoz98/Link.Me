@@ -55,7 +55,7 @@ namespace LinkMe.Middlewares
                         IPAddress = ip,
                         Country = json.CountryName,
                         CountryRegion = json.RegionName,
-                        WhenClicked = DateTime.UtcNow,
+                        WhenClicked = DateTime.UtcNow.Date,
                     };
                     await linkClickRepository.AddAsync(linkClick);
                     context.Response.Redirect(link.OriginalLink);
