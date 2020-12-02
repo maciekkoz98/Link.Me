@@ -7,11 +7,12 @@
 <script src="//cdn.amcharts.com/lib/4/core.js"></script>
 <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
 <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
-
-<script src=".../lang/pl_PL.js"></script>
-<script>
-    chart.language.locale = am4lang_pl_PL;
-</script>
+<Environment include="Development">
+    <script src="~/js/LinkStats/generateCharts.js"></script>
+</Environment>
+<Environment exclude="Development">
+    <script src="~/js/LinkStats/generateCharts.min.js"></script>
+</Environment>
 
 <div class="d-flex justify-content-between align-items-center h1-margin">
     <a class="btn btn-login btn-back" asp-page="/Index">Powrót</a>
@@ -21,11 +22,11 @@
 <div>
     <div class="d-flex flex-row">
         <h3 style="min-width:191px">Link:</h3>
-        <a class="h3 ml-5" href="#">https://www.wp.pl</a>
+        <a class="h3 ml-5" href="@Model.Link.OriginalLink">@Model.Link.OriginalLink</a>
     </div>
     <div class="d-flex flex-row mt-3">
         <h3>Krótki link:</h3>
-        <a class="h3 ml-5" href="#">https://link.me/5sdfw945</a>
+        <a class="h3 ml-5" href="#">https://link.me/@Model.Link.ShortLink</a>
     </div>
 </div>
 <div class="flex-parent">
@@ -44,9 +45,9 @@
 </div>
 <div class="mt-5">
     <h3>Wygenerowany ruch:</h3>
-    <div id="clickChart"></div>
+    <div style="height: 400px;" id="clickChart"></div>
 </div>
 <div class="mt-5">
     <h3>Lokalizacje:</h3>
-    <div id="locationsMap"></div>
+    <div style="height: 400px;" id="locationsMap"></div>
 </div>

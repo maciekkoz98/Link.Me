@@ -2,6 +2,7 @@
 using LinkMe.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ namespace LinkMe.Api
                 return this.BadRequest();
             }
 
-            if (!result.OwnerId.Equals(this.User.FindFirst(ClaimTypes.NameIdentifier)))
+            if (!result.OwnerId.Equals(this.User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return this.Forbid();
             }

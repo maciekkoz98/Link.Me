@@ -26,5 +26,16 @@
       "renameLocals": true
     },
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/LinkStats/generateCharts.min.js",
+    "inputFiles": [
+      "wwwroot/js/LinkStats/generateCharts.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
   }
 ]

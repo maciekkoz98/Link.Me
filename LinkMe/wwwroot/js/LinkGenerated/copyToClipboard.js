@@ -6,7 +6,6 @@
 }
 
 function copyToClipboard() {
-    console.log("klik");
     navigator.clipboard.writeText(shortLinkInput.value)
         .then(
             () => { console.log("udane"); },
