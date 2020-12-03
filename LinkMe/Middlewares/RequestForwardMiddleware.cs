@@ -53,8 +53,7 @@ namespace LinkMe.Middlewares
                     {
                         LinkId = link.Id,
                         IPAddress = ip,
-                        Country = json.CountryName,
-                        CountryRegion = json.RegionName,
+                        CountryCode = json.CountryCode,
                         WhenClicked = DateTime.UtcNow.Date,
                     };
                     await linkClickRepository.AddAsync(linkClick);

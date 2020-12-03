@@ -43,14 +43,12 @@ namespace LinkMe.Data.Repositories
                 .Where(x => x.LinkId.Equals(linkId))
                 .GroupBy(x => new
                 {
-                    x.Country,
-                    x.CountryRegion,
+                    x.CountryCode,
                 })
                 .Select(x => new RegionStatsDto()
                 {
-                    Country = x.Key.Country,
-                    Region = x.Key.CountryRegion,
-                    Count = x.Count(),
+                    Id = x.Key.CountryCode,
+                    Value = x.Count(),
                 })
                .ToListAsync();
         }

@@ -5,7 +5,7 @@ namespace LinkMe.Core.Interfaces
 {
     public interface ILinkClickData
     {
-       LinkClick AddLinkClick(int linkID, string ipAddress, string country, string countryRegion);
+       LinkClick AddLinkClick(int linkID, string ipAddress, string countryCode);
 
        IEnumerable<LinkClick> GetLinkClicksByLinkID(int linkID);
     }

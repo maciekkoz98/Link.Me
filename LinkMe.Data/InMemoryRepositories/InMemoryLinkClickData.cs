@@ -19,15 +19,14 @@ namespace LinkMe.Data.InMemoryRepositories
             };
         }
 
-        public LinkClick AddLinkClick(int linkID, string ipAddress, string country, string countryRegion)
+        public LinkClick AddLinkClick(int linkID, string ipAddress, string countryCode)
         {
             var newLinkClick = new LinkClick
             {
                 LinkId = linkID,
                 IPAddress = ipAddress,
                 WhenClicked = DateTime.UtcNow,
-                Country = country,
-                CountryRegion = countryRegion,
+                CountryCode = countryCode,
             };
             this.linkClicks.Add(newLinkClick);
             newLinkClick.Id = this.linkClicks.Max(l => l.Id) + 1;

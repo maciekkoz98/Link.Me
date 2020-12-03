@@ -2,10 +2,8 @@
 {
     public class RegionStatsDto
     {
-        public string Country { get; set; }
+        public string Id { get; set; }
 
-        public string Region { get; set; }
-
-        public int Count { get; set; }
+        public int Value { get; set; }
     }
 }

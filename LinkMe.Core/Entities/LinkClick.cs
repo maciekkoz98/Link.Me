@@ -10,11 +10,8 @@ namespace LinkMe.Core.Entities
         [StringLength(15)]
         public string IPAddress { get; set; }
 
-        [StringLength(50)]
-        public string Country { get; set; }
-
-        [StringLength(100)]
-        public string CountryRegion { get; set; }
+        [StringLength(15)]
+        public string CountryCode { get; set; }
 
         public DateTime WhenClicked { get; set; }
     }
