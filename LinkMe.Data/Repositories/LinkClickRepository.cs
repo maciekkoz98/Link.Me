@@ -34,6 +34,7 @@ namespace LinkMe.Data.Repositories
                     ClickDate = x.Key.WhenClicked,
                     Count = x.Count(),
                 })
+                .OrderBy(x => x.ClickDate)
                 .ToListAsync();
         }
 
@@ -45,7 +46,8 @@ namespace LinkMe.Data.Repositories
                 {
                     x.CountryCode,
                 })
-                .Select(x => new RegionStatsDto()
+                .Select(
+                x => new RegionStatsDto()
                 {
                     Id = x.Key.CountryCode,
                     Value = x.Count(),

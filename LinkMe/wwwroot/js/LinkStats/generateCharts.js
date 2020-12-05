@@ -21,6 +21,8 @@
 }
 
 function createClickChart(dateStatsDtos) {
+    prepareDateStats(dateStatsDtos);
+
     var chart = am4core.create("clickChart", am4charts.XYChart);
 
     var categoryXAxes = chart.xAxes.push(new am4charts.DateAxis());
@@ -46,22 +48,34 @@ function createClickChart(dateStatsDtos) {
 }
 
 function createMapChart(regionDtos) {
-    console.log(regionDtos);
     var map = am4core.create("locationsMap", am4maps.MapChart);
     map.geodata = am4geodata_worldHigh;
-    map.projections = new am4maps.projections.Miller();
+    map.geodataNames = am4geodata_lang_PL;
+    map.projections = new am4maps.projections.Mercator();
 
     var polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     polygonSeries.heatRules.push({
         "property": "fill",
         "target": polygonSeries.mapPolygons.template,
-        "min": am4core.color("#006661"),
-        "max": am4core.color("#5ce2db"),
+        "min": am4core.color("#34dbd2"),
+        "max": am4core.color("#01938b"),
     });
     polygonSeries.useGeodata = true;
-    polygonSeries.dataFields.categoryX = "countryCode";
-    polygonSeries.dataFields.valueY = "count";
+    polygonSeries.data = regionDtos;
 
     var polygonTemplate = polygonSeries.mapPolygons.template;
     polygonTemplate.tooltipText = "{name}: [b]{value}[/]";
+}
+
+function prepareDateStats(dateStatsDtos) {
+    for (var i = 0; i < dateStatsDtos.length - 1; i++) {
+        var stat = dateStatsDtos[i];
+        var statDate = new Date(stat.clickDate);
+        statDate.setDate(statDate.getDate() + 1);
+        var nextStat = dateStatsDtos[i + 1];
+        var nextStatDate = new Date(nextStat.clickDate);
+        if (statDate.getTime() !== nextStatDate.getTime()) {
+            dateStatsDtos.splice(i + 1, 0, { clickDate: statDate, count: 0 });
+        }
+    }
 }

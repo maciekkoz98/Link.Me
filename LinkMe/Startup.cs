@@ -30,6 +30,7 @@ namespace LinkMe
         {
             services.AddScoped<ILinkRepository, LinkRepository>();
             services.AddScoped<ILinkClickRepository, LinkClickRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<ILinkStatsService, LinkStatsService>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddIdentityCore<User>()
