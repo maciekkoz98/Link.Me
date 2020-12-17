@@ -2,6 +2,7 @@
 using LinkMe.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Threading.Tasks;
 
 namespace LinkMe.Pages
@@ -16,6 +17,8 @@ namespace LinkMe.Pages
         }
 
         public Link Link { get; set; }
+
+        public int DaysLeft { get; set; }
 
         public async Task<IActionResult> OnGetAsync([FromQuery] int id = -1)
         {
@@ -35,6 +38,7 @@ namespace LinkMe.Pages
             else if (!this.Link.ShownSummary)
             {
                 this.Link.ShownSummary = true;
+                this.DaysLeft = (this.Link.ValidTo - DateTime.UtcNow).Days + 1;
                 return this.Page();
             }
             else

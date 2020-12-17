@@ -20,6 +20,8 @@ namespace LinkMe.Core.Entities
         [StringLength(450)]
         public string OwnerId { get; set; }
 
+        public bool IsPremiumLink { get; set; }
+
         public DateTime ValidTo { get; set; }
 
         public bool ShownSummary { get; set; }
@@ -40,12 +42,15 @@ namespace LinkMe.Core.Entities
             switch (userType)
             {
                 case UserType.Unregistered:
+                    this.IsPremiumLink = false;
                     this.ValidTo = now.AddDays(3);
                     break;
                 case UserType.Registered:
+                    this.IsPremiumLink = false;
                     this.ValidTo = now.AddDays(7);
                     break;
                 case UserType.Premium:
+                    this.IsPremiumLink = true;
                     this.ValidTo = now.AddYears(100);
                     break;
             }
