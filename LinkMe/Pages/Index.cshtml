@@ -50,7 +50,7 @@
                     }
                     <td class="align-middle">https://link.me/@link.ShortLink</td>
                     <td class="align-middle">@link.ValidTo</td>
-                    <td class="align-middle">
+                    <td class="align-middle" style="display: flex;">
                         <!--Stats icon-->
                         <a class="no-accent" asp-page="./Link" asp-route-linkId="@link.Id">
                             <svg class="table-icon stats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -58,9 +58,13 @@
                             </svg>
                         </a>
                         <!--Delete icon-->
-                        <svg class="table-icon delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.12 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z" />
-                        </svg>
+                        <form method="post" asp-page="./Link" asp-route-linkId="@link.Id">
+                            <button type="submit" style="background: none; border: none;">
+                                <svg class="table-icon delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M14.12 10.47L12 12.59l-2.13-2.12-1.41 1.41L10.59 14l-2.12 2.12 1.41 1.41L12 15.41l2.12 2.12 1.41-1.41L13.41 14l2.12-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z" />
+                                </svg>
+                            </button>
+                        </form> 
                     </td>
                 </tr>
             }
