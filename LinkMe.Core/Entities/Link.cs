@@ -66,11 +66,7 @@ namespace LinkMe.Core.Entities
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode >= HttpStatusCode.OK && response.StatusCode <= HttpStatusCode.PartialContent)
                 {
-                    validationResult = ValidationResult.Success;
-                }
-                else if (response.StatusCode >= HttpStatusCode.MultipleChoices && response.StatusCode <= HttpStatusCode.TemporaryRedirect)
-                {
-                    // TODO: Change OriginalLink if redirection occurs
+                    this.OriginalLink = response.ResponseUri.AbsoluteUri;
                     validationResult = ValidationResult.Success;
                 }
                 else
