@@ -24,9 +24,7 @@ namespace LinkMe.Middlewares
             var endpoint = context.GetEndpoint();
             if (endpoint == null)
             {
-                // TODO dostań się do bazy i sprawdź czy jest link o podanym skrócie, jesli nie to zwróć 404
-                // potem sprawdź czy termin jest ok -> przekieruj, jeśli nie pokaż planszę o wygaśnięciu linku
-                var link = await linkRepository.GetLinkByShortLinkAsync(context.Request.Path.ToString().Substring(1));
+                var link = await linkRepository.GetLinkByShortLinkAsync(context.Request.Path.ToString()[1..]);
                 if (link == null)
                 {
                     await this.next(context);
@@ -60,18 +58,9 @@ namespace LinkMe.Middlewares
                     context.Response.Redirect(link.OriginalLink);
                     return;
                 }
-                else
-                {
-                    // TODO return expired link page
-                    Console.WriteLine("halo");
-                }
+            }
 
-                await this.next(context);
-            }
-            else
-            {
-                await this.next(context);
-            }
+            await this.next(context);
         }
     }
 }

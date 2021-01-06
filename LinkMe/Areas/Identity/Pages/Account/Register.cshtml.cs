@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -71,8 +72,7 @@ namespace LinkMe.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code, returnUrl },
                         protocol: this.Request.Scheme);
 
-                    string htmlMessage = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.";
-                    await this.emailSender.SendEmailAsync(this.Input.Email, "Confirm your email", htmlMessage);
+                    await this.emailSender.SendEmailAsync(this.Input.Email, "Potwierdź rejestrację konta", HtmlEncoder.Default.Encode(callbackUrl));
 
                     if (this.userManager.Options.SignIn.RequireConfirmedAccount)
                     {
