@@ -67,7 +67,7 @@ namespace LinkMe.UITests
             var statsButton = waitDriver.Until(e => e.FindElement(By.ClassName("no-accent")));
             statsButton.Click();
 
-            // this.driver.Quit();
+            this.driver.Quit();
         }
     }
 }
