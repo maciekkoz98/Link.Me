@@ -1,5 +1,5 @@
 ﻿window.onload = async () => {
-    var id = window.location.href.slice(-1);
+    var id = window.location.href.split("/")[4];
     await fetch(`https://localhost:44388/api/LinkStats/${id}`,
         {
             method: "GET"

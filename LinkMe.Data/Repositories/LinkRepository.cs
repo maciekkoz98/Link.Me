@@ -22,7 +22,7 @@ namespace LinkMe.Data.Repositories
 
         public async Task<IReadOnlyList<Link>> GetLinksByUserId(string userId)
         {
-            return await this.dbContext.Links.Where(x => x.OwnerId.Equals(userId)).ToListAsync();
+            return await this.dbContext.Links.Where(x => x.OwnerId.Equals(userId)).OrderByDescending(x => x.ValidTo).ToListAsync();
         }
 
         public async Task<Link> GetLinkByShortLinkAsync(string shortLink)
